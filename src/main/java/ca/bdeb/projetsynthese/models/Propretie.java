@@ -1,4 +1,4 @@
-package ca.bdeb.reservation.models;
+package ca.bdeb.projetsynthese.models;
 
 import javax.persistence.*;
 import java.io.Serializable;

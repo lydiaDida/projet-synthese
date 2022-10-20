@@ -1,8 +1,10 @@
-package ca.bdeb.reservation.models;
+package ca.bdeb.projetsynthese.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Categorie implements Serializable {
     @Id
@@ -26,7 +28,7 @@ public class Categorie implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<Propretie> getListePropretie() {
+    public List<Propretie> getListePropretie() {
         return listePropretie;
     }
 
@@ -44,5 +46,5 @@ public class Categorie implements Serializable {
     }
 
     @OneToMany
-    private ArrayList<Propretie> listePropretie;
+    private List<Propretie> listePropretie;
 }
