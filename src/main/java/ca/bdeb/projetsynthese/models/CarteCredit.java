@@ -19,8 +19,6 @@ public class CarteCredit {
     @Column(name = "expiration")
     private Date expiration;
 
-
-
     // constructor
     public CarteCredit() {
     }

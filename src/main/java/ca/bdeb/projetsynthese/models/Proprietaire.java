@@ -29,17 +29,18 @@ public class Proprietaire {
     @Column(name = "etatDeProprietaire")
     private boolean etatDeProprietaire;
 
-    // relation(1:1) Proprietaire et Adresse
-    // one way mapping, it need not two ways mapping
+    /** relation **/
+    // relation(1:1) Proprietaire ===> Adresse
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idAdresse", referencedColumnName = "id")
     private Adresse adresse;
 
-    // relation(1:n) Proprietaire(1) et Hebergement(n)
+    // relation(1:n) Proprietaire(1) <===> Hebergement(n)
      @OneToMany(mappedBy = "proprietaire",
                 fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL)
      private List<Hebergement> hebergementList = new ArrayList<>();
+    /** fin relation **/
 
     // constructor
     public Proprietaire() {

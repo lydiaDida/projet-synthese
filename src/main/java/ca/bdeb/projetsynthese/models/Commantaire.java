@@ -19,14 +19,15 @@ public class Commantaire {
     @Column(name = "etatDecommantaire")
     private boolean etatDecommantaire;
 
-    // relation(1:n) Locataire(1) et Commantaire(n)
+    /** relation **/
+    // relation(1:n) Locataire(1) <===> Commantaire(n)
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "emailLocataire",
                 referencedColumnName = "emailLocataire")
     private Locataire locataire;
+    /** fin relation **/
 
     // constructor
-
     public Commantaire() {
     }
 
@@ -41,10 +42,6 @@ public class Commantaire {
     public int getId() {
         return id;
     }
-
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 
     public String getCommantaire() {
         return commantaire;

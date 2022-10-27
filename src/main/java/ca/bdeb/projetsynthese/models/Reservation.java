@@ -34,32 +34,31 @@ public class Reservation {
     @Column(name = "etatReservation")
     private boolean etatReservation;
 
-    // relation(1:n) Reservation(1) Locataire(n)
+    /** relation **/
+    // relation(1:n) Reservation(1) <===> Locataire(n)
     @ManyToOne
     @JoinColumn(name = "emailLocataire",
                 referencedColumnName = "emailLocataire")
     private Locataire locataire;
 
-    // relation(1:1) Reservation(1) Hebergement(1)
+    // relation(1:1) Reservation(1) ===> Hebergement(1)
     @OneToOne
     @JoinColumn(name = "idHebergement",
                 referencedColumnName = "id")
     private Hebergement hebergement;
 
-    // relation(1:1) Reservation(1) Facture(1)
+    // relation(1:1) Reservation(1) <===> Facture(1)
     @OneToOne
     @JoinColumn(name = "numeroDeFacture",
                 referencedColumnName = "numeroDeFacture")
     private Facture facture;
 
-    // relation(1:1) Reservation(1) CarteCredit(1)
-    // one way mapping
+    // relation(1:1) Reservation(1) ===> CarteCredit(1)
     @OneToOne
     @JoinColumn(name = "numeroCarteCredit",
                 referencedColumnName = "numero")
     private CarteCredit carteCredit;
-
-
+    /** fin relation **/
 
     // constructor
     public Reservation() {
@@ -92,10 +91,6 @@ public class Reservation {
     public int getNumeroDeReservation() {
         return numeroDeReservation;
     }
-
-//    public void setNumeroDeReservation(int numeroDeReservation) {
-//        this.numeroDeReservation = numeroDeReservation;
-//    }
 
     public Date getDateDeArrive() {
         return dateDeArrive;

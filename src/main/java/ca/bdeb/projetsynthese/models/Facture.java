@@ -27,15 +27,17 @@ public class Facture {
     @Column(name = "total")
     private float total;
 
-    // relation(1:n) Locataire(1) et Facture(n)
+    /** relation **/
+    // relation(1:n) Locataire(1) <===> Facture(n)
     @ManyToOne
     @JoinColumn(name = "emailLocataire",
                 referencedColumnName = "emailLocataire")
     private Locataire locataire;
 
-    // relation(1:1) Reservation(1) Facture(1)
+    // relation(1:1) Reservation(1) <===> Facture(1)
     @OneToOne(mappedBy = "facture")
     private Reservation reservation;
+    /** fin relation **/
 
     // constructor
     public Facture() {
@@ -60,10 +62,6 @@ public class Facture {
     public int getNumeroDeFacture() {
         return numeroDeFacture;
     }
-
-//    public void setNumeroDeFacture(int numeroDeFacture) {
-//        this.numeroDeFacture = numeroDeFacture;
-//    }
 
     public float getSommeDeSejout() {
         return sommeDeSejout;

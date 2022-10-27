@@ -28,10 +28,6 @@ public class TypeDeHebergement {
         return id;
     }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
     public String getTypeDeHebergement() {
         return typeDeHebergement;
     }

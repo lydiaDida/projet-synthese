@@ -20,14 +20,16 @@ public class DisponibiliteDeLogement {
     @Column(name = "finDeDateDeDisponibilite")
     private Date finDeDateDeDisponibilite;
 
+    /** relation **/
+    // relation(n:1) DisponibiliteDelogement(n) <===> Herbergement(1)
     @ManyToOne(fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL)
     @JoinColumn(name = "idHebergement",
                 referencedColumnName = "id")
     private Hebergement hebergement;
+    /** fin relation **/
 
     // constructor
-
     public DisponibiliteDeLogement() {
     }
 
@@ -42,10 +44,6 @@ public class DisponibiliteDeLogement {
     public int getId() {
         return id;
     }
-
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 
     public Date getDebutDeDateDeDisponibilite() {
         return debutDeDateDeDisponibilite;

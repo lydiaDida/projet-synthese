@@ -29,29 +29,30 @@ public class Locataire {
     @Column(name = "etatDeLocataire")
     private boolean etatDeLocataire;
 
-    // relation(1:1) Locataire(1) et Adresse(1)
-    // one way mapping, it need not two ways mapping
+    /** relation **/
+    // relation(1:1) Locataire(1) ===> Adresse(1)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idAdresse", referencedColumnName = "id")
     private Adresse adresse;
 
-    // relation(1:n) Locataire(1) et Commantaire(n)
+    // relation(1:n) Locataire(1) <===> Commantaire(n)
     @OneToMany(mappedBy = "locataire",
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     private List<Commantaire> commantaireList = new ArrayList<>();
 
-    // relation(1:n) Locataire(1) et Facture(n)
+    // relation(1:n) Locataire(1) <===> Facture(n)
      @OneToMany(mappedBy = "locataire",
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
      private List<Facture> factureList = new ArrayList<>();
 
-    // relation(1:n) Locataire(1) et Reservation(n)
+    // relation(1:n) Locataire(1) <===> Reservation(n)
      @OneToMany(mappedBy = "locataire",
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
      private List<Reservation> reservationList = new ArrayList<>();
+    /** fin relation **/
 
     // constructor
     public Locataire() {

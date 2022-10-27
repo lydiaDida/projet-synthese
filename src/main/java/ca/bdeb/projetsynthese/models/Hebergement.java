@@ -30,8 +30,8 @@ public class Hebergement {
     @Column(name = "etatDeHebergement")
     private boolean etatDeHebergement;
 
-    // relation(1:1) Hebergement(1) Adresse(1)
-    // one way mapping
+    /** relation **/
+    // relation(1:1) Hebergement(1) ===> Adresse(1)
     @OneToOne
     @JoinColumn(name = "idAdresse")
     private Adresse adresse;
@@ -55,11 +55,9 @@ public class Hebergement {
     // relation(1:n) Hebergement(1) <===> DisponibiliteDeLogement(n)
     @OneToMany(mappedBy = "hebergement")
     private List<DisponibiliteDeLogement> disponibiliteDeLogementList = new ArrayList<>();
-
+    /** fin relation **/
 
     // constructor
-
-
     public Hebergement() {
     }
 

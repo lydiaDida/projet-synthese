@@ -28,10 +28,6 @@ public class SecteurDeHebergement {
         return id;
     }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
     public String getSecteurDeHebergement() {
         return secteurDeHebergement;
     }
