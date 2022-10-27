@@ -1,5 +1,7 @@
 # Getting Started
 
+### This is a project RESTful API using Spring Boot and Hibernate
+
 ### Reference Documentation
 
 For further reference, please consider the following sections:
