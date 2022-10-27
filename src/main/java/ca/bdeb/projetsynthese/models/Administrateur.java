@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Administrateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "nomAdministrateur")
@@ -32,10 +33,6 @@ public class Administrateur {
     public int getId() {
         return id;
     }
-
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 
     public String getNomAdministrateur() {
         return nomAdministrateur;
