@@ -48,22 +48,33 @@ public class Locataire {
      private List<Facture> factureList = new ArrayList<>();
 
     // relation(1:n) Locataire(1) et Reservation(n)
-     @OneToMany
+     @OneToMany(mappedBy = "locataire",
+                fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL)
+     private List<Reservation> reservationList = new ArrayList<>();
 
     // constructor
     public Locataire() {
     }
 
-    public Locataire(String emailLocataire, String motDePasse, String nom,
-                     String prenom, String telephone, boolean etatDeLocataire,
-                     Adresse adresse) {
-        this.emailLocataire = emailLocataire;
+    public Locataire(String motDePasse,
+                     String nom,
+                     String prenom,
+                     String telephone,
+                     boolean etatDeLocataire,
+                     Adresse adresse,
+                     List<Commantaire> commantaireList,
+                     List<Facture> factureList,
+                     List<Reservation> reservationList) {
         this.motDePasse = motDePasse;
         this.nom = nom;
         this.prenom = prenom;
         this.telephone = telephone;
         this.etatDeLocataire = etatDeLocataire;
         this.adresse = adresse;
+        this.commantaireList = commantaireList;
+        this.factureList = factureList;
+        this.reservationList = reservationList;
     }
 
     public String getEmailLocataire() {
@@ -121,6 +132,30 @@ public class Locataire {
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
+
+    public List<Commantaire> getCommantaireList() {
+        return commantaireList;
+    }
+
+//    public void setCommantaireList(List<Commantaire> commantaireList) {
+//        this.commantaireList = commantaireList;
+//    }
+
+    public List<Facture> getFactureList() {
+        return factureList;
+    }
+
+//    public void setFactureList(List<Facture> factureList) {
+//        this.factureList = factureList;
+//    }
+
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+
+//    public void setReservationList(List<Reservation> reservationList) {
+//        this.reservationList = reservationList;
+//    }
 
     @Override
     public String toString() {

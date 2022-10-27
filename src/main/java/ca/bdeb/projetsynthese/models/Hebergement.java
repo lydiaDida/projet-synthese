@@ -56,4 +56,133 @@ public class Hebergement {
     @OneToMany(mappedBy = "hebergement")
     private List<DisponibiliteDeLogement> disponibiliteDeLogementList = new ArrayList<>();
 
+
+    // constructor
+
+
+    public Hebergement() {
+    }
+
+    public Hebergement(float prix,
+                       float fraisDeNettoyage,
+                       float fraisDeService,
+                       String repertoireDePhoto,
+                       boolean etatDeHebergement,
+                       Adresse adresse,
+                       Proprietaire proprietaire,
+                       TypeDeHebergement typeDeHebergement,
+                       SecteurDeHebergement secteurDeHebergement,
+                       List<DisponibiliteDeLogement> disponibiliteDeLogementList) {
+        this.prix = prix;
+        this.fraisDeNettoyage = fraisDeNettoyage;
+        this.fraisDeService = fraisDeService;
+        this.repertoireDePhoto = repertoireDePhoto;
+        this.etatDeHebergement = etatDeHebergement;
+        this.adresse = adresse;
+        this.proprietaire = proprietaire;
+        this.typeDeHebergement = typeDeHebergement;
+        this.secteurDeHebergement = secteurDeHebergement;
+        this.disponibiliteDeLogementList = disponibiliteDeLogementList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+    public float getFraisDeNettoyage() {
+        return fraisDeNettoyage;
+    }
+
+    public void setFraisDeNettoyage(float fraisDeNettoyage) {
+        this.fraisDeNettoyage = fraisDeNettoyage;
+    }
+
+    public float getFraisDeService() {
+        return fraisDeService;
+    }
+
+    public void setFraisDeService(float fraisDeService) {
+        this.fraisDeService = fraisDeService;
+    }
+
+    public String getRepertoireDePhoto() {
+        return repertoireDePhoto;
+    }
+
+    public void setRepertoireDePhoto(String repertoireDePhoto) {
+        this.repertoireDePhoto = repertoireDePhoto;
+    }
+
+    public boolean isEtatDeHebergement() {
+        return etatDeHebergement;
+    }
+
+    public void setEtatDeHebergement(boolean etatDeHebergement) {
+        this.etatDeHebergement = etatDeHebergement;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public Proprietaire getProprietaire() {
+        return proprietaire;
+    }
+
+    public void setProprietaire(Proprietaire proprietaire) {
+        this.proprietaire = proprietaire;
+    }
+
+    public TypeDeHebergement getTypeDeHebergement() {
+        return typeDeHebergement;
+    }
+
+    public void setTypeDeHebergement(TypeDeHebergement typeDeHebergement) {
+        this.typeDeHebergement = typeDeHebergement;
+    }
+
+    public SecteurDeHebergement getSecteurDeHebergement() {
+        return secteurDeHebergement;
+    }
+
+    public void setSecteurDeHebergement(SecteurDeHebergement secteurDeHebergement) {
+        this.secteurDeHebergement = secteurDeHebergement;
+    }
+
+    public List<DisponibiliteDeLogement> getDisponibiliteDeLogementList() {
+        return disponibiliteDeLogementList;
+    }
+
+    public void setDisponibiliteDeLogementList(List<DisponibiliteDeLogement> disponibiliteDeLogementList) {
+        this.disponibiliteDeLogementList = disponibiliteDeLogementList;
+    }
+
+    @Override
+    public String toString() {
+        return "Hebergement{" +
+                "id=" + id +
+                ", prix=" + prix +
+                ", fraisDeNettoyage=" + fraisDeNettoyage +
+                ", fraisDeService=" + fraisDeService +
+                ", repertoireDePhoto='" + repertoireDePhoto + '\'' +
+                ", etatDeHebergement=" + etatDeHebergement +
+                ", adresse=" + adresse +
+                ", proprietaire=" + proprietaire +
+                ", typeDeHebergement=" + typeDeHebergement +
+                ", secteurDeHebergement=" + secteurDeHebergement +
+                ", disponibiliteDeLogementList=" + disponibiliteDeLogementList +
+                '}';
+    }
 }
