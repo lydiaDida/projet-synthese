@@ -2,35 +2,64 @@ package ca.bdeb.projetsynthese.controller;
 
 import ca.bdeb.projetsynthese.dao.AdministrateurRepository;
 import ca.bdeb.projetsynthese.models.Administrateur;
+import ca.bdeb.projetsynthese.services.AdministrateurService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Created by Thomas Wang on 10/31/2022.
  */
-@Api(tags = "api pour administrateur")
+@Api(tags = "API pour administrateur")
 @RestController
 @RequestMapping("/api/v1/administrateur")
 public class AdministrateurController {
     @Autowired
-    private AdministrateurRepository administrateurRepository;
+    private AdministrateurService AdministrateurService;
 
-    @ApiOperation(value = "requête la list d'administrateur")
-    @GetMapping("/admin")
+    @ApiOperation(value = "Récupérer la list d'administrateur")
+    @GetMapping("/list")
     public List<Administrateur> findAllAdministrateurs(){
-        return administrateurRepository.findAll();
+        return AdministrateurService.getAdministrateurList();
     }
 
+    @ApiOperation(value = "Récupérer l'administrateur spécifié par id")
+    @GetMapping("/{id}")
+    public Administrateur findAdministrateurById(@PathVariable int id){
+        return AdministrateurService.getAdministrateurById(id);
+    }
 
+    @ApiOperation(value = "Récupérer l'administrateur spécifié par nom'")
+    @GetMapping("/name/{name}")
+    public Administrateur findAdministrateurByName(@PathVariable String name){
+        return AdministrateurService.getAdministrateurByName(name);
+    }
+
+    @ApiOperation(value = "Ajouter un nouvel administrateur")
+    @PostMapping("/add")
+    public Administrateur addAdministrateur(@RequestBody Administrateur administrateur){
+        return AdministrateurService.addAdministrateur(administrateur);
+    }
+
+    @ApiOperation(value = "Modifer un administrateur existe")
+    @PutMapping("/update")
+    public Administrateur updateAdministrateur(@RequestBody Administrateur administrate){
+        return AdministrateurService.updateAdministrateur(administrate);
+    }
+
+    @ApiOperation(value = "Supprimer un administrateur")
+    @DeleteMapping("/delete/{id}")
+    public void deleteAdministrateur(@PathVariable Integer id){
+        AdministrateurService.deleteAdministrateur(id);
+    }
+
+    ////////////////////////////////////////////////////////////////
     // ce methode est pour test ce controller
-    @ApiOperation(value="test access administrateur controller")
+    @ApiOperation(value="Test access administrateur controller")
     @GetMapping("/test")
     public String  findTestAllAdministrateurs(){
         return "test for allAdministrate";
