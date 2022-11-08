@@ -1,6 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -14,9 +15,11 @@ public class DisponibiliteDeLogement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
     @Column(name = "debutDeDateDeDisponibilite")
     private Date debutDeDateDeDisponibilite;
 
+    @NotNull
     @Column(name = "finDeDateDeDisponibilite")
     private Date finDeDateDeDisponibilite;
 

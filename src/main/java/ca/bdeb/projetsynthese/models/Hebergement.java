@@ -1,6 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,19 +16,22 @@ public class Hebergement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "prix")
+    @NotNull
+    @Column(name = "prix", columnDefinition = "float(10) DEFAULT 0.00")
     private float prix;
 
-    @Column(name = "fraisDeNettoyage")
+    @NotNull
+    @Column(name = "fraisDeNettoyage", columnDefinition = "float(10) DEFAULT 0.00")
     private float fraisDeNettoyage;
 
-    @Column(name = "fraisDeService")
+    @NotNull
+    @Column(name = "fraisDeService", columnDefinition = "float(10) DEFAULT 0.00")
     private float fraisDeService;
 
-    @Column(name = "repertoireDePhoto")
+    @Column(name = "repertoireDePhoto", columnDefinition = "varchar(100)")
     private String repertoireDePhoto;
 
-    @Column(name = "etatDeHebergement")
+    @Column(name = "etatDeHebergement", columnDefinition = "boolean DEFAULT true")
     private boolean etatDeHebergement;
 
     /** relation **/
@@ -39,7 +43,8 @@ public class Hebergement {
     // relation(1:n) Proprietaire(1) <===> Hebergement(n)
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "emailProprietaire",
-                referencedColumnName = "emailProprietaire")
+                referencedColumnName = "emailProprietaire",
+                columnDefinition = "varchar(50)")
     private Proprietaire proprietaire;
 
     // relation(1:1) Hebergement(1) ===> TypeDeHebergement(1)

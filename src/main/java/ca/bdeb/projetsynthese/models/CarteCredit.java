@@ -1,9 +1,6 @@
 package ca.bdeb.projetsynthese.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -13,7 +10,7 @@ import java.util.Date;
 @Table(name = "CarteCredit")
 public class CarteCredit {
     @Id
-    @Column(name = "numero")
+    @Column(name = "numero", columnDefinition = "varchar(25)")
     private String numero;
 
     @Column(name = "expiration")

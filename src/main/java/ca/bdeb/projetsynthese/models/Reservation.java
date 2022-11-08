@@ -1,6 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -13,32 +14,36 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numeroDeReservation;
 
+    @NotNull
     @Column(name = "dateDeArrive")
     private Date dateDeArrive;
 
+    @NotNull
     @Column(name = "dateDeDepart")
     private Date dateDeDepart;
 
+    @NotNull
     @Column(name = "nombreAdulte")
     private int nombreAdulte;
 
-    @Column(name = "nombreEnfant")
+    @Column(name = "nombreEnfant", columnDefinition="int DEFAULT 0")
     private int nombreEnfant;
 
-    @Column(name = "nombreBebe")
+    @Column(name = "nombreBebe", columnDefinition="int DEFAULT 0")
     private int nombreBebe;
 
-    @Column(name = "nombreAnimauxAssistance")
+    @Column(name = "nombreAnimauxAssistance", columnDefinition="int DEFAULT 0")
     private int nombreAnimauxAssistance;
 
-    @Column(name = "etatReservation")
+    @Column(name = "etatReservation", columnDefinition="boolean DEFAULT true")
     private boolean etatReservation;
 
     /** relation **/
     // relation(1:n) Reservation(1) <===> Locataire(n)
     @ManyToOne
     @JoinColumn(name = "emailLocataire",
-                referencedColumnName = "emailLocataire")
+                referencedColumnName = "emailLocataire",
+                columnDefinition = "varchar(50)")
     private Locataire locataire;
 
     // relation(1:1) Reservation(1) ===> Hebergement(1)
@@ -56,7 +61,8 @@ public class Reservation {
     // relation(1:1) Reservation(1) ===> CarteCredit(1)
     @OneToOne
     @JoinColumn(name = "numeroCarteCredit",
-                referencedColumnName = "numero")
+                referencedColumnName = "numero",
+                columnDefinition="varchar(25)")
     private CarteCredit carteCredit;
     /** fin relation **/
 

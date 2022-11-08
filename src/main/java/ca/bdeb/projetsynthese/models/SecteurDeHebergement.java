@@ -13,7 +13,7 @@ public class SecteurDeHebergement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "secteurDeHebergement")
+    @Column(name = "secteurDeHebergement", columnDefinition = "varchar(50)")
     private String secteurDeHebergement;
 
     // constructor

@@ -13,7 +13,7 @@ public class TypeDeHebergement {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "typeDeHebergement")
+    @Column(name = "typeDeHebergement", columnDefinition = "varchar(50)")
     private String typeDeHebergement;
 
     // constructor

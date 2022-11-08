@@ -12,18 +12,19 @@ public class Commantaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "commantaire")
+    @Column(name = "commantaire", columnDefinition = "varchar(200)")
     private String commantaire;
 
 
-    @Column(name = "etatDecommantaire")
-    private boolean etatDecommantaire;
+    @Column(name = "etatDeCommantaire", columnDefinition = "boolean DEFAULT true")
+    private boolean etatDeCommantaire;
 
     /** relation **/
     // relation(1:n) Locataire(1) <===> Commantaire(n)
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "emailLocataire",
-                referencedColumnName = "emailLocataire")
+                referencedColumnName = "emailLocataire",
+                columnDefinition = "varchar(50)")
     private Locataire locataire;
     /** fin relation **/
 
@@ -32,10 +33,10 @@ public class Commantaire {
     }
 
     public Commantaire(String commantaire,
-                       boolean etatDecommantaire,
+                       boolean etatDeCommantaire,
                        Locataire locataire) {
         this.commantaire = commantaire;
-        this.etatDecommantaire = etatDecommantaire;
+        this.etatDeCommantaire = etatDeCommantaire;
         this.locataire = locataire;
     }
 
@@ -51,12 +52,12 @@ public class Commantaire {
         this.commantaire = commantaire;
     }
 
-    public boolean isEtatDecommantaire() {
-        return etatDecommantaire;
+    public boolean isEtatDeCommantaire() {
+        return etatDeCommantaire;
     }
 
-    public void setEtatDecommantaire(boolean etatDecommantaire) {
-        this.etatDecommantaire = etatDecommantaire;
+    public void setEtatDeCommantaire(boolean etatDeCommantaire) {
+        this.etatDeCommantaire = etatDeCommantaire;
     }
 
     public Locataire getLocataire() {
@@ -72,7 +73,7 @@ public class Commantaire {
         return "Commantaire{" +
                 "id=" + id +
                 ", commantaire='" + commantaire + '\'' +
-                ", etatDecommantaire=" + etatDecommantaire +
+                ", etatDeCommantaire=" + etatDeCommantaire +
                 ", locataire=" + locataire +
                 '}';
     }

@@ -2,6 +2,7 @@ package ca.bdeb.projetsynthese.models;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Thomas Wang on 10/26/2022.
@@ -14,19 +15,21 @@ public class Administrateur {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "nomAdministrateur")
+    @NotNull
+    @Column(name = "nomAdministrateur", columnDefinition= "varchar(50)")
     private String nomAdministrateur;
 
-    @Column(name = "motDepasse")
-    private String motDepasse;
+    @NotNull
+    @Column(name = "motDePasse", columnDefinition = "varchar(25)")
+    private String motDePasse;
 
     // constructor
     public Administrateur() {
     }
 
-    public Administrateur(String nomAdministrateur, String motDepasse) {
+    public Administrateur(String nomAdministrateur, String motDePasse) {
         this.nomAdministrateur = nomAdministrateur;
-        this.motDepasse = motDepasse;
+        this.motDePasse = motDePasse;
     }
 
     // setter and getter
@@ -42,12 +45,12 @@ public class Administrateur {
         this.nomAdministrateur = nomAdministrateur;
     }
 
-    public String getMotDepasse() {
-        return motDepasse;
+    public String getMotDePasse() {
+        return motDePasse;
     }
 
-    public void setMotDepasse(String motDepasse) {
-        this.motDepasse = motDepasse;
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
     @Override
@@ -55,7 +58,7 @@ public class Administrateur {
         return "Administrateur{" +
                 "id=" + id +
                 ", nomAdministrateur='" + nomAdministrateur + '\'' +
-                ", motDepasse='" + motDepasse + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
                 '}';
     }
 }

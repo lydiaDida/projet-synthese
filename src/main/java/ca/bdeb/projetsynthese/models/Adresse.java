@@ -13,22 +13,22 @@ public class Adresse {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "numeroDeRue")
+    @Column(name = "numeroDeRue", columnDefinition = "varchar(25)")
     private String numeroDeRue;
 
-    @Column(name = "rue")
+    @Column(name = "rue", columnDefinition = "varchar(50)")
     private String rue;
 
-    @Column(name = "ville")
+    @Column(name = "ville", columnDefinition = "varchar(50) DEFAULT 'Montreal'")
     private String ville;
 
-    @Column(name = "province")
+    @Column(name = "province", columnDefinition = "varchar(50) DEFAULT 'Quebec'")
     private String province;
 
-    @Column(name = "pays")
+    @Column(name = "pays", columnDefinition = "varchar(50) DEFAULT 'Canada'")
     private String pays;
 
-    @Column(name = "codePostale")
+    @Column(name = "codePostale", columnDefinition = "varchar(25)")
     private String codePostale;
 
     // constructor

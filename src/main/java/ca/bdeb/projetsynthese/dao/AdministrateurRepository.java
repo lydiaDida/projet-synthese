@@ -2,8 +2,8 @@ package ca.bdeb.projetsynthese.dao;
 
 import ca.bdeb.projetsynthese.models.Administrateur;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
+@Repository
 public interface AdministrateurRepository extends JpaRepository<Administrateur, Integer> {
 }

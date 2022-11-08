@@ -12,26 +12,27 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numeroDeFacture;
 
-    @Column(name = "sommeDeSejout")
+    @Column(name = "sommeDeSejout", columnDefinition = "float(10) DEFAULT 0.00")
     private float sommeDeSejout;
 
-    @Column(name = "fraisDeNettoyage")
+    @Column(name = "fraisDeNettoyage", columnDefinition="float(10) DEFAULT 0.00")
     private float fraisDeNettoyage;
 
-    @Column(name = "fraisDeService")
+    @Column(name = "fraisDeService", columnDefinition="float(10) DEFAULT 0.00")
     private float fraisDeService;
 
-    @Column(name = "tax")
+    @Column(name = "tax", columnDefinition= "float(10) DEFAULT 0.00")
     private float tax;
 
-    @Column(name = "total")
+    @Column(name = "total", columnDefinition="float(10) DEFAULT 0.00")
     private float total;
 
     /** relation **/
     // relation(1:n) Locataire(1) <===> Facture(n)
     @ManyToOne
     @JoinColumn(name = "emailLocataire",
-                referencedColumnName = "emailLocataire")
+                referencedColumnName = "emailLocataire",
+                columnDefinition="varchar(50)")
     private Locataire locataire;
 
     // relation(1:1) Reservation(1) <===> Facture(1)

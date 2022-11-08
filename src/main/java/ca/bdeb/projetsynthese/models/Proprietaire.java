@@ -1,6 +1,8 @@
 package ca.bdeb.projetsynthese.models;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,22 +13,23 @@ import java.util.List;
 @Table(name = "Proprietaire")
 public class Proprietaire {
     @Id
-    @Column(name = "emailProprietaire")
+    @Column(name = "emailProprietaire", columnDefinition = "varchar(100)")
     private String emailProprietaire;
 
-    @Column(name = "motDePasse")
+    @NotNull
+    @Column(name = "motDePasse", columnDefinition = "varchar(25)")
     private String motDePasse;
 
-    @Column(name = "nom")
+    @Column(name = "nom", columnDefinition = "varchar(50)")
     private String nom;
 
-    @Column(name = "prenom")
+    @Column(name = "prenom", columnDefinition="varchar(50)")
     private String prenom;
 
-    @Column(name = "telephone")
+    @Column(name = "telephone", columnDefinition = "varchar(25)")
     private String telephone;
 
-    @Column(name = "etatDeProprietaire")
+    @Column(name = "etatDeProprietaire", columnDefinition = "boolean DEFAULT true")
     private boolean etatDeProprietaire;
 
     /** relation **/

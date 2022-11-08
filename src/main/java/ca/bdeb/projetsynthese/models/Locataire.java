@@ -1,6 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,25 +12,28 @@ import java.util.List;
 @Table(name = "Locataire")
 public class Locataire {
     @Id
-    @Column(name = "emailLocataire")
+    @Column(name = "emailLocataire", columnDefinition = "varchar(50)")
     private String emailLocataire;
 
-    @Column(name = "motDePasse")
+    @NotNull
+    @Column(name = "motDePasse", columnDefinition = "varchar(25)")
     private String motDePasse;
 
-    @Column(name = "nom")
+    @Column(name = "nom", columnDefinition = "varchar(50)")
     private String nom;
 
-    @Column(name = "prenom")
+    @Column(name = "prenom", columnDefinition = "varchar(50)")
     private String prenom;
 
-    @Column(name = "telephone")
+    @Column(name = "telephone", columnDefinition = "varchar(25)")
     private String telephone;
 
-    @Column(name = "etatDeLocataire")
+    @Column(name = "etatDeLocataire", columnDefinition = "boolean DEFAULT true")
     private boolean etatDeLocataire;
 
-    /** relation **/
+    /**
+     * relation
+     **/
     // relation(1:1) Locataire(1) ===> Adresse(1)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idAdresse", referencedColumnName = "id")
@@ -37,22 +41,25 @@ public class Locataire {
 
     // relation(1:n) Locataire(1) <===> Commantaire(n)
     @OneToMany(mappedBy = "locataire",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private List<Commantaire> commantaireList = new ArrayList<>();
 
     // relation(1:n) Locataire(1) <===> Facture(n)
-     @OneToMany(mappedBy = "locataire",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
-     private List<Facture> factureList = new ArrayList<>();
+    @OneToMany(mappedBy = "locataire",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Facture> factureList = new ArrayList<>();
 
     // relation(1:n) Locataire(1) <===> Reservation(n)
-     @OneToMany(mappedBy = "locataire",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
-     private List<Reservation> reservationList = new ArrayList<>();
-    /** fin relation **/
+    @OneToMany(mappedBy = "locataire",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Reservation> reservationList = new ArrayList<>();
+
+    /**
+     * fin relation
+     **/
 
     // constructor
     public Locataire() {
