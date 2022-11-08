@@ -1,6 +1,10 @@
 package ca.bdeb.projetsynthese.models;
 
 
+//import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -9,6 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "Administrateur")
+@Validated
 public class Administrateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +22,12 @@ public class Administrateur {
 
     @NotNull
     @Column(name = "nomAdministrateur", columnDefinition= "varchar(50)")
+    @Length(min=3, max=50, message="Length of name must be between 3 and 50 characters")
     private String nomAdministrateur;
 
     @NotNull
     @Column(name = "motDePasse", columnDefinition = "varchar(25)")
+    @Length(min=6, max=50, message="Length of password must be between 6 and 50 characters")
     private String motDePasse;
 
     // constructor

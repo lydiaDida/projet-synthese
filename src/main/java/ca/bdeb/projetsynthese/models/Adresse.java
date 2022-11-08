@@ -1,21 +1,27 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Thomas Wang on 10/26/2022.
  */
 @Entity
 @Table(name = "Adresse")
+@Validated
 public class Adresse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
+    @NotNull(message = "Le numero de l'adresse est obligatoire")
     @Column(name = "numeroDeRue", columnDefinition = "varchar(25)")
     private String numeroDeRue;
 
+    @NotNull(message = "La rue est obligatoire")
     @Column(name = "rue", columnDefinition = "varchar(50)")
     private String rue;
 
@@ -28,6 +34,7 @@ public class Adresse {
     @Column(name = "pays", columnDefinition = "varchar(50) DEFAULT 'Canada'")
     private String pays;
 
+    @NotNull(message = "Le code postale est obligatoire")
     @Column(name = "codePostale", columnDefinition = "varchar(25)")
     private String codePostale;
 

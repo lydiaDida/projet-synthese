@@ -1,6 +1,10 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -9,30 +13,37 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Reservation")
+@Validated
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numeroDeReservation;
 
-    @NotNull
+    @NotNull(message = "La date d'arrivé est obligatoire")
+    @Future(message = "La date d'arrivé doit être après aujourd'hui")
     @Column(name = "dateDeArrive")
     private Date dateDeArrive;
 
-    @NotNull
+    @NotNull(message = "La date de départ est obligatoire")
     @Column(name = "dateDeDepart")
+    @Future(message = "La date de départ doit être après aujourd'hui")
     private Date dateDeDepart;
 
-    @NotNull
+    @NotNull(message="Le nombre de l'adulte est obligatoire")
+    @Min(1)
     @Column(name = "nombreAdulte")
     private int nombreAdulte;
 
     @Column(name = "nombreEnfant", columnDefinition="int DEFAULT 0")
+    @Min(0)
     private int nombreEnfant;
 
     @Column(name = "nombreBebe", columnDefinition="int DEFAULT 0")
+    @Min(0)
     private int nombreBebe;
 
     @Column(name = "nombreAnimauxAssistance", columnDefinition="int DEFAULT 0")
+    @Min(0)
     private int nombreAnimauxAssistance;
 
     @Column(name = "etatReservation", columnDefinition="boolean DEFAULT true")

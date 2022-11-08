@@ -1,7 +1,10 @@
 package ca.bdeb.projetsynthese.models;
 
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +14,11 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Proprietaire")
+@Validated
 public class Proprietaire {
     @Id
     @Column(name = "emailProprietaire", columnDefinition = "varchar(100)")
+    @Email(message = "The email address is not a valid email address")
     private String emailProprietaire;
 
     @NotNull

@@ -1,7 +1,11 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Hebergement")
+@Validated
 public class Hebergement {
     @Id
     @Column(name = "id")
@@ -18,17 +23,21 @@ public class Hebergement {
 
     @NotNull
     @Column(name = "prix", columnDefinition = "float(10) DEFAULT 0.00")
+    @Min(value=0, message="Le prix doit supérieur 0")
     private float prix;
 
     @NotNull
     @Column(name = "fraisDeNettoyage", columnDefinition = "float(10) DEFAULT 0.00")
+    @Min(value=0, message="Le frais de nettoyage doit supérieur 0")
     private float fraisDeNettoyage;
 
     @NotNull
     @Column(name = "fraisDeService", columnDefinition = "float(10) DEFAULT 0.00")
+    @Min(value=0, message="Le frais de service doit supérieur 0")
     private float fraisDeService;
 
     @Column(name = "repertoireDePhoto", columnDefinition = "varchar(100)")
+    @Length(min=0, max=100, message="Le longueur de repertoire de photo doit entre 0 et 100")
     private String repertoireDePhoto;
 
     @Column(name = "etatDeHebergement", columnDefinition = "boolean DEFAULT true")

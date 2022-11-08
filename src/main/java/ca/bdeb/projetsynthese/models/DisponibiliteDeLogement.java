@@ -1,5 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -9,17 +11,18 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "DisponibiliteDeLogement")
+@Validated
 public class DisponibiliteDeLogement {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+    @NotNull(message="La date de début est obligatoire")
     @Column(name = "debutDeDateDeDisponibilite")
     private Date debutDeDateDeDisponibilite;
 
-    @NotNull
+    @NotNull(message="La date de départ est obligatoire")
     @Column(name = "finDeDateDeDisponibilite")
     private Date finDeDateDeDisponibilite;
 

@@ -1,6 +1,10 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import java.util.Date;
 
 /**
@@ -8,12 +12,15 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "CarteCredit")
+@Validated
 public class CarteCredit {
     @Id
     @Column(name = "numero", columnDefinition = "varchar(25)")
+    @Length(min = 12, max = 25, message="number of credit cards must be between 12 and 25")
     private String numero;
 
     @Column(name = "expiration")
+    @Future(message = "La date d'expiration doit après aujourd'hui")
     private Date expiration;
 
     // constructor

@@ -1,5 +1,8 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 
 /**
@@ -7,12 +10,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Commantaire")
+@Validated
 public class Commantaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "commantaire", columnDefinition = "varchar(200)")
+    @Length(min=0, max=200, message="Commantaire doit entre 0 et 200 characters")
     private String commantaire;
 
 

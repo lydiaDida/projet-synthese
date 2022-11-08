@@ -1,6 +1,10 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,22 +14,29 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Locataire")
+// for verifying the data
+@Validated
 public class Locataire {
     @Id
     @Column(name = "emailLocataire", columnDefinition = "varchar(50)")
+    @Email(message = "The email address is not a valid email address")
     private String emailLocataire;
 
     @NotNull
     @Column(name = "motDePasse", columnDefinition = "varchar(25)")
+    @Length(min = 6, max = 25, message="La longueur de la mot de passe doit entre 6 et 25")
     private String motDePasse;
 
     @Column(name = "nom", columnDefinition = "varchar(50)")
+    @Length(min = 6, max = 50, message="La longueur du nom doit entre 6 et 50")
     private String nom;
 
     @Column(name = "prenom", columnDefinition = "varchar(50)")
+    @Length(min = 6, max = 50, message="La longueur du prénom doit entre 6 et 50")
     private String prenom;
 
     @Column(name = "telephone", columnDefinition = "varchar(25)")
+    @Length(min = 0, max = 25, message="La longueur du téléphone doit entre 0 et 25")
     private String telephone;
 
     @Column(name = "etatDeLocataire", columnDefinition = "boolean DEFAULT true")

@@ -1,5 +1,8 @@
 package ca.bdeb.projetsynthese.models;
 
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 
 /**
@@ -7,12 +10,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "TypeDeHebergement")
+@Validated
 public class TypeDeHebergement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
+    @Length(min = 1, max = 50, message = "La longueur de type doit entre 1 et 50")
     @Column(name = "typeDeHebergement", columnDefinition = "varchar(50)")
     private String typeDeHebergement;
 
