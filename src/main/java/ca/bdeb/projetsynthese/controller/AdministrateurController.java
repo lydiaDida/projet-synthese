@@ -1,11 +1,9 @@
 package ca.bdeb.projetsynthese.controller;
 
-import ca.bdeb.projetsynthese.dao.AdministrateurRepository;
 import ca.bdeb.projetsynthese.models.Administrateur;
 import ca.bdeb.projetsynthese.services.AdministrateurService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
