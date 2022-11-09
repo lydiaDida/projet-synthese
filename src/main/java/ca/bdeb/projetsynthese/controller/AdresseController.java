@@ -1,6 +1,7 @@
-package ca.bdeb.projetsynthese.services;
+package ca.bdeb.projetsynthese.controller;
 
 import ca.bdeb.projetsynthese.models.Adresse;
+import ca.bdeb.projetsynthese.services.AdresseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

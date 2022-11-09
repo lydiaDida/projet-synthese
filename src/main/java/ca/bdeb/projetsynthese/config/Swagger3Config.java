@@ -33,7 +33,8 @@ public class Swagger3Config {
                 .build();
         return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+//                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("ca.bdeb.projetsynthese.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .pathMapping("/")
