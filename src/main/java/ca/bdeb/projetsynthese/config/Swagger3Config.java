@@ -32,6 +32,8 @@ public class Swagger3Config {
                 .termsOfServiceUrl("URL")
                 .build();
         return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo)
+                .groupName("Lydia-Luisa-Shuang")
+                .enable(true)
                 .select()
 //                .apis(RequestHandlerSelectors.any())
                 .apis(RequestHandlerSelectors.basePackage("ca.bdeb.projetsynthese.controller"))

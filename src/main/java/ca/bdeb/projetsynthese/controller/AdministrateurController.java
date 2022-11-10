@@ -4,6 +4,7 @@ import ca.bdeb.projetsynthese.models.Administrateur;
 import ca.bdeb.projetsynthese.services.AdministrateurService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +28,13 @@ public class AdministrateurController {
 
     @ApiOperation(value = "Récupérer l'administrateur spécifié par id")
     @GetMapping("/{id}")
-    public Administrateur findAdministrateurById(@PathVariable int id){
+    public Administrateur findAdministrateurById(@ApiParam("Administrateur Id") @PathVariable int id){
         return AdministrateurService.getAdministrateurById(id);
     }
 
     @ApiOperation(value = "Récupérer l'administrateur spécifié par nom'")
     @GetMapping("/name/{name}")
-    public Administrateur findAdministrateurByName(@PathVariable String name){
+    public Administrateur findAdministrateurByName(@ApiParam("Administrateur name") @PathVariable String name){
         return AdministrateurService.getAdministrateurByName(name);
     }
 
@@ -51,7 +52,7 @@ public class AdministrateurController {
 
     @ApiOperation(value = "Supprimer un administrateur")
     @DeleteMapping("/delete/{id}")
-    public void deleteAdministrateur(@PathVariable Integer id){
+    public void deleteAdministrateur(@ApiParam("Administrateur Id") @PathVariable Integer id){
         AdministrateurService.deleteAdministrateur(id);
     }
 
@@ -59,7 +60,8 @@ public class AdministrateurController {
     // ce methode est pour test ce controller
     @ApiOperation(value="Test access administrateur controller")
     @GetMapping("/test")
+    @ResponseBody
     public String  findTestAllAdministrateurs(){
-        return "test for allAdministrate";
+        return "test for all Administrateurs";
     }
 }

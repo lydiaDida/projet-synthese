@@ -4,6 +4,7 @@ import ca.bdeb.projetsynthese.models.Adresse;
 import ca.bdeb.projetsynthese.services.AdresseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class AdresseController {
     // get an adresse specific by its id
     @ApiOperation(value = "Récupérer un adresse spécifié")
     @GetMapping("/{id}")
-    public Adresse getAdresseById(@PathVariable Integer id) {
+    public Adresse getAdresseById(@ApiParam("Adresse Id") @PathVariable Integer id) {
         return  service.getAdresseById(id);
     }
     // add an adresse
@@ -47,7 +48,7 @@ public class AdresseController {
     // delete an adresse
     @ApiOperation(value = "Supprimer un adresse")
     @DeleteMapping("/delete/{id}")
-    public void deleteAdresse(@PathVariable Integer id) {
+    public void deleteAdresse(@ApiParam("Adresse Id") @PathVariable Integer id) {
         service.deleteAdresse(id);
     }
 

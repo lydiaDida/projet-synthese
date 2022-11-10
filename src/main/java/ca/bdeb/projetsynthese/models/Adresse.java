@@ -1,5 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -11,31 +13,39 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "Adresse")
 @Validated
+@ApiModel(value = "Adresse Entity")
 public class Adresse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ApiModelProperty(value = "Adresse Id")
     private int id;
 
     @NotNull(message = "Le numero de l'adresse est obligatoire")
     @Column(name = "numeroDeRue", columnDefinition = "varchar(25)")
+    @ApiModelProperty(value = "Street number")
     private String numeroDeRue;
 
     @NotNull(message = "La rue est obligatoire")
     @Column(name = "rue", columnDefinition = "varchar(50)")
+    @ApiModelProperty(value = "Street name")
     private String rue;
 
     @Column(name = "ville", columnDefinition = "varchar(50) DEFAULT 'Montreal'")
+    @ApiModelProperty(value = "City name")
     private String ville;
 
     @Column(name = "province", columnDefinition = "varchar(50) DEFAULT 'Quebec'")
+    @ApiModelProperty(value = "Province name")
     private String province;
 
     @Column(name = "pays", columnDefinition = "varchar(50) DEFAULT 'Canada'")
+    @ApiModelProperty(value = "Country name")
     private String pays;
 
     @NotNull(message = "Le code postale est obligatoire")
     @Column(name = "codePostale", columnDefinition = "varchar(25)")
+    @ApiModelProperty(value = "postal code")
     private String codePostale;
 
     // constructor

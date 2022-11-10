@@ -2,6 +2,8 @@ package ca.bdeb.projetsynthese.models;
 
 
 //import org.hibernate.validator.constraints.Length;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 
@@ -11,23 +13,28 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by Thomas Wang on 10/26/2022.
  */
+
 @Entity
 @Table(name = "Administrateur")
 @Validated
+@ApiModel(value = "Administrateur Entity")
 public class Administrateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ApiModelProperty(value = "Administrateur Id")
     private int id;
 
     @NotNull
     @Column(name = "nomAdministrateur", columnDefinition= "varchar(50)")
     @Length(min=3, max=50, message="Length of name must be between 3 and 50 characters")
+    @ApiModelProperty(value = "Administrateur name")
     private String nomAdministrateur;
 
     @NotNull
     @Column(name = "motDePasse", columnDefinition = "varchar(25)")
     @Length(min=6, max=50, message="Length of password must be between 6 and 50 characters")
+    @ApiModelProperty(value = "Mot de passe d'administrateur")
     private String motDePasse;
 
     // constructor

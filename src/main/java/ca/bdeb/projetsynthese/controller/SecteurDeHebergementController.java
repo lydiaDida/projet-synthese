@@ -4,6 +4,7 @@ import ca.bdeb.projetsynthese.models.SecteurDeHebergement;
 import ca.bdeb.projetsynthese.services.SecteurDeHebergementService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class SecteurDeHebergementController {
 
     @ApiOperation(value = "Récupérer secteurDeHebergementService spécifié par id")
     @GetMapping("/{id}")
-    public SecteurDeHebergement getSecteurDeHebergement(@PathVariable Integer id){
+    public SecteurDeHebergement getSecteurDeHebergement(@ApiParam("Secteur Id") @PathVariable Integer id){
         return secteurDeHebergementService.getSecteurDeHebergementById(id);
     }
 
@@ -45,7 +46,7 @@ public class SecteurDeHebergementController {
 
     @ApiOperation(value = "Supprimer un secteur de Héberge")
     @DeleteMapping("/delete/{id}")
-    public void deleteSecteurDeHebergement(@PathVariable Integer id){
+    public void deleteSecteurDeHebergement(@ApiParam("Secteur Id") @PathVariable Integer id){
         secteurDeHebergementService.deleteSecteurDeHebergement(id);
     }
 }
