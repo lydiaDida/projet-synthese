@@ -1,13 +1,11 @@
 package ca.bdeb.projetsynthese.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 
-/**
- * Created by Thomas Wang on 10/27/2022.
- */
 @Entity
 @Table(name = "Facture")
 @Validated
@@ -46,6 +44,7 @@ public class Facture {
 
     // relation(1:1) Reservation(1) <===> Facture(1)
     @OneToOne(mappedBy = "facture")
+    @JsonIgnoreProperties(value ={"facture"})
     private Reservation reservation;
     /** fin relation **/
 

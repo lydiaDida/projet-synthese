@@ -1,5 +1,10 @@
 package ca.bdeb.projetsynthese.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 
@@ -9,11 +14,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Thomas Wang on 10/26/2022.
- */
 @Entity
 @Table(name = "Locataire")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 // for verifying the data
 @Validated
 public class Locataire {
@@ -46,32 +51,35 @@ public class Locataire {
      * relation
      **/
     // relation(1:1) Locataire(1) ===> Adresse(1)
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "idAdresse", referencedColumnName = "id")
     private Adresse adresse;
 
     // relation(1:n) Locataire(1) <===> Commantaire(n)
-    @OneToMany(mappedBy = "locataire",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "locataire")
+    // pour evider nested exception
+//    @JsonIgnoreProperties(value ={"locataire"})
+    @JsonIgnore
     private List<Commantaire> commantaireList = new ArrayList<>();
 
     // relation(1:n) Locataire(1) <===> Facture(n)
-    @OneToMany(mappedBy = "locataire",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "locataire")
+    // pour evider nested exception
+//    @JsonIgnoreProperties(value ={"locataire"})
+    @JsonIgnore
     private List<Facture> factureList = new ArrayList<>();
 
     // relation(1:n) Locataire(1) <===> Reservation(n)
-    @OneToMany(mappedBy = "locataire",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "locataire")
+    // pour evider nested exception
+//    @JsonIgnoreProperties(value ={"locataire"})
+    @JsonIgnore
     private List<Reservation> reservationList = new ArrayList<>();
 
     /**
      * fin relation
      **/
-
+/**
     // constructor
     public Locataire() {
     }
@@ -176,16 +184,17 @@ public class Locataire {
 //        this.reservationList = reservationList;
 //    }
 
-    @Override
-    public String toString() {
-        return "Locataire{" +
-                "emailLocataire='" + emailLocataire + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", etatDeLocataire=" + etatDeLocataire +
-                ", adresse=" + adresse +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Locataire{" +
+//                "emailLocataire='" + emailLocataire + '\'' +
+//                ", motDePasse='" + motDePasse + '\'' +
+//                ", nom='" + nom + '\'' +
+//                ", prenom='" + prenom + '\'' +
+//                ", telephone='" + telephone + '\'' +
+//                ", etatDeLocataire=" + etatDeLocataire +
+//                ", adresse=" + adresse +
+//                '}';
+//    }
+ **/
 }

@@ -9,9 +9,6 @@ import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Thomas Wang on 10/27/2022.
- */
 @Entity
 @Table(name = "Hebergement")
 @Validated
