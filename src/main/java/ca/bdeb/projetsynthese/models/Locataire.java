@@ -2,6 +2,8 @@ package ca.bdeb.projetsynthese.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,32 +21,39 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value = "Locataire")
 // for verifying the data
 @Validated
 public class Locataire {
     @Id
     @Column(name = "emailLocataire", columnDefinition = "varchar(50)")
     @Email(message = "The email address is not a valid email address")
+    @ApiModelProperty(value = "The locataire email address")
     private String emailLocataire;
 
     @NotNull
     @Column(name = "motDePasse", columnDefinition = "varchar(25)")
     @Length(min = 6, max = 25, message="La longueur de la mot de passe doit entre 6 et 25")
+    @ApiModelProperty(value = "The locataire password")
     private String motDePasse;
 
     @Column(name = "nom", columnDefinition = "varchar(50)")
     @Length(min = 6, max = 50, message="La longueur du nom doit entre 6 et 50")
+    @ApiModelProperty(value = "The locataire last name")
     private String nom;
 
     @Column(name = "prenom", columnDefinition = "varchar(50)")
     @Length(min = 6, max = 50, message="La longueur du prénom doit entre 6 et 50")
+    @ApiModelProperty(value = "The locataire first name")
     private String prenom;
 
     @Column(name = "telephone", columnDefinition = "varchar(25)")
     @Length(min = 0, max = 25, message="La longueur du téléphone doit entre 0 et 25")
+    @ApiModelProperty(value = "The locataire telephone")
     private String telephone;
 
     @Column(name = "etatDeLocataire", columnDefinition = "boolean DEFAULT true")
+    @ApiModelProperty(value = "The locataire status")
     private boolean etatDeLocataire;
 
     /**
