@@ -1,49 +1,68 @@
 package ca.bdeb.projetsynthese.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Reservation")
 @Validated
+@ApiModel(value = "Reservation Entity")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "reservation number")
     private int numeroDeReservation;
 
     @NotNull(message = "La date d'arrivé est obligatoire")
     @Future(message = "La date d'arrivé doit être après aujourd'hui")
     @Column(name = "dateDeArrive")
-    private Date dateDeArrive;
+    @ApiModelProperty(value = "date de arrive")
+    private LocalDate dateDeArrive;
 
     @NotNull(message = "La date de départ est obligatoire")
     @Column(name = "dateDeDepart")
     @Future(message = "La date de départ doit être après aujourd'hui")
-    private Date dateDeDepart;
+    @ApiModelProperty(value = "date de depart")
+    private LocalDate dateDeDepart;
 
     @NotNull(message="Le nombre de l'adulte est obligatoire")
     @Min(1)
     @Column(name = "nombreAdulte")
+    @ApiModelProperty(value = "nombre de l'adulte")
     private int nombreAdulte;
 
     @Column(name = "nombreEnfant", columnDefinition="int DEFAULT 0")
     @Min(0)
+    @ApiModelProperty(value = "nombre de l'enfant")
     private int nombreEnfant;
 
     @Column(name = "nombreBebe", columnDefinition="int DEFAULT 0")
     @Min(0)
+    @ApiModelProperty(value = "nombre de bebe")
     private int nombreBebe;
 
     @Column(name = "nombreAnimauxAssistance", columnDefinition="int DEFAULT 0")
     @Min(0)
+    @ApiModelProperty(value = "nombre d'animaux assistance")
     private int nombreAnimauxAssistance;
 
     @Column(name = "etatReservation", columnDefinition="boolean DEFAULT true")
+    @ApiModelProperty(value = "etat reservation")
     private boolean etatReservation;
 
     /** relation **/
@@ -74,6 +93,7 @@ public class Reservation {
     private CarteCredit carteCredit;
     /** fin relation **/
 
+    /**
     // constructor
     public Reservation() {
     }
@@ -211,4 +231,5 @@ public class Reservation {
                 ", carteCredit=" + carteCredit +
                 '}';
     }
+    **/
 }

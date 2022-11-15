@@ -1,27 +1,40 @@
 package ca.bdeb.projetsynthese.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "DisponibiliteDeLogement")
 @Validated
+@ApiModel(value = "DisponibiliteDeLogement Entity")
 public class DisponibiliteDeLogement {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = " disponibiliteDeLogementList id")
     private int id;
 
     @NotNull(message="La date de début est obligatoire")
     @Column(name = "debutDeDateDeDisponibilite")
-    private Date debutDeDateDeDisponibilite;
+    @ApiModelProperty(value = " debutDeDateDeDisponibilite")
+    private LocalDate debutDeDateDeDisponibilite;
 
     @NotNull(message="La date de départ est obligatoire")
     @Column(name = "finDeDateDeDisponibilite")
-    private Date finDeDateDeDisponibilite;
+    @ApiModelProperty(value = " finDeDateDeDisponibilite")
+    private LocalDate finDeDateDeDisponibilite;
 
     /** relation **/
     // relation(n:1) DisponibiliteDelogement(n) <===> Herbergement(1)
@@ -32,6 +45,7 @@ public class DisponibiliteDeLogement {
     private Hebergement hebergement;
     /** fin relation **/
 
+    /**
     // constructor
     public DisponibiliteDeLogement() {
     }
@@ -81,4 +95,5 @@ public class DisponibiliteDeLogement {
                 ", hebergement=" + hebergement +
                 '}';
     }
+    **/
 }

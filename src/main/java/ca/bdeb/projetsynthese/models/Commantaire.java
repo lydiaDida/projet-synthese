@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class Commantaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "commentaire Id")
     private int id;
 
     @Column(name = "commantaire", columnDefinition = "varchar(200)")
