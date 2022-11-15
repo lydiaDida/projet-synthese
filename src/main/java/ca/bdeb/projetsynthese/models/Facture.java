@@ -1,5 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.validation.annotation.Validated;
 
@@ -16,22 +18,32 @@ public class Facture {
 
     @Min(value = 0, message = "La somme de séjour supérieur 0")
     @Column(name = "sommeDeSejout", columnDefinition = "float(10) DEFAULT 0.00")
+    // evider changement de float pour le front-end
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private float sommeDeSejout;
 
     @Min(value = 0, message = "Le frais de nettoyage supérieur 0")
     @Column(name = "fraisDeNettoyage", columnDefinition="float(10) DEFAULT 0.00")
+    // evider changement de float pour le front-end
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private float fraisDeNettoyage;
 
     @Min(value = 0, message = "Le frais de service supérieur 0")
     @Column(name = "fraisDeService", columnDefinition="float(10) DEFAULT 0.00")
+    // evider changement de float pour le front-end
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private float fraisDeService;
 
     @Min(value = 0, message = "Le tax supérieur 0")
     @Column(name = "tax", columnDefinition= "float(10) DEFAULT 0.00")
+    // evider changement de float pour le front-end
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private float tax;
 
     @Min(value = 0, message = "La somme totale supérieur 0")
     @Column(name = "total", columnDefinition="float(10) DEFAULT 0.00")
+    // evider changement de float pour le front-end
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private float total;
 
     /** relation **/
@@ -44,7 +56,8 @@ public class Facture {
 
     // relation(1:1) Reservation(1) <===> Facture(1)
     @OneToOne(mappedBy = "facture")
-    @JsonIgnoreProperties(value ={"facture"})
+//    @JsonIgnoreProperties(value ={"facture"})
+    @JsonIgnore
     private Reservation reservation;
     /** fin relation **/
 
