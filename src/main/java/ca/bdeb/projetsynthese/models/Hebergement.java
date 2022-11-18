@@ -28,31 +28,32 @@ public class Hebergement {
 
     @NotNull
     @Column(name = "prix", columnDefinition = "float(10) DEFAULT 0.00")
-    @Min(value=0, message="Le prix doit  etre supérieur 0")
+    @Min(value = 0, message = "Le prix doit  etre supérieur 0")
     private float prix;
 
     @NotNull
     @Column(name = "fraisDeNettoyage", columnDefinition = "float(10) DEFAULT 0.00")
-    @Min(value=0, message="Le frais de nettoyage doit supérieur 0")
+    @Min(value = 0, message = "Le frais de nettoyage doit supérieur 0")
     private float fraisDeNettoyage;
 
     @NotNull
     @Column(name = "fraisDeService", columnDefinition = "float(10) DEFAULT 0.00")
-    @Min(value=0, message="Le frais de service doit supérieur 0")
+    @Min(value = 0, message = "Le frais de service doit supérieur 0")
     private float fraisDeService;
 
     @Column(name = "repertoireDePhoto", columnDefinition = "varchar(100)")
-    @Length(min=0, max=100, message="Le longueur de repertoire de photo doit entre 0 et 100")
+    @Length(min = 0, max = 100, message = "Le longueur de repertoire de photo doit entre 0 et 100")
     private String repertoireDePhoto;
 
     @Column(name = "etatDeHebergement", columnDefinition = "boolean DEFAULT true")
     private boolean etatDeHebergement;
 
-    /** relation **/
+    /**
+     * relation
+     **/
     // relation(1:1) Hebergement(1) ===> Adresse(1)
     @OneToOne
     @JoinColumn(name = "idAdresse")
-    @JsonIgnoreProperties(value = {"adresse"})
     private Adresse adresse;
 
     // relation(1:n) Proprietaire(1) <===> Hebergement(n)
@@ -60,183 +61,177 @@ public class Hebergement {
     @JoinColumn(name = "emailProprietaire",
             referencedColumnName = "emailProprietaire",
             columnDefinition = "varchar(50)")
-//    @JsonIgnore
-    @JsonIgnoreProperties(value = {"proprietaire"})
     private Proprietaire proprietaire;
 
     // relation(1:1) Hebergement(1) ===> TypeDeHebergement(1)
     @OneToOne
     @JoinColumn(name = "idTypeDeHebergement")
-//    @JsonIgnore
-    @JsonIgnoreProperties(value = {"typeDeHebergement"})
     private TypeDeHebergement typeDeHebergement;
 
     // relation(1:1) Hebergement(1) ===> SecteurDeHebergement(1)
     @OneToOne
     @JoinColumn(name = "idSecteurDeHebergement")
-    @JsonIgnoreProperties(value = {"secteurDeHebergement"})
     private SecteurDeHebergement secteurDeHebergement;
 
     // relation(1:n) Hebergement(1) <===> IndisponibiliteDeLogement(n)
     @OneToMany(mappedBy = "hebergement")
     @JsonIgnore
     private List<IndisponibiliteDeLogement> indisponibiliteDeLogementList = new ArrayList<>();
-    /**
-    private List<IndisponibiliteDeLogement> indisponibiliteDeLogementList = new AbstractList<IndisponibiliteDeLogement>()
-    {
-        @Override
-        public IndisponibiliteDeLogement get(int index) {
-            return null;
-        }
 
-        @Override
-        public int size() {
-            return 0;
-        }
-    };
+    /**
+     private List<IndisponibiliteDeLogement> indisponibiliteDeLogementList = new AbstractList<IndisponibiliteDeLogement>()
+     {
+     @Override public IndisponibiliteDeLogement get(int index) {
+     return null;
+     }
+
+     @Override public int size() {
+     return 0;
+     }
+     };
      **/
+
     /** fin relation **/
 
     /**
-    // constructor
-    public Hebergement() {
-    }
+     // constructor
+     public Hebergement() {
+     }
 
-    public Hebergement(int id, float prix, float fraisDeNettoyage, float fraisDeService, String repertoireDePhoto, boolean etatDeHebergement, Adresse adresse, Proprietaire proprietaire, TypeDeHebergement typeDeHebergement, SecteurDeHebergement secteurDeHebergement) {
+     public Hebergement(int id, float prix, float fraisDeNettoyage, float fraisDeService, String repertoireDePhoto, boolean etatDeHebergement, Adresse adresse, Proprietaire proprietaire, TypeDeHebergement typeDeHebergement, SecteurDeHebergement secteurDeHebergement) {
 
-        this.id = id;
-        this.prix = prix;
-        this.fraisDeNettoyage = fraisDeNettoyage;
-        this.fraisDeService = fraisDeService;
-        this.repertoireDePhoto = repertoireDePhoto;
-        this.etatDeHebergement = etatDeHebergement;
-        this.adresse = adresse;
-        this.proprietaire = proprietaire;
-        this.typeDeHebergement = typeDeHebergement;
-        this.secteurDeHebergement = secteurDeHebergement;
-    }
+     this.id = id;
+     this.prix = prix;
+     this.fraisDeNettoyage = fraisDeNettoyage;
+     this.fraisDeService = fraisDeService;
+     this.repertoireDePhoto = repertoireDePhoto;
+     this.etatDeHebergement = etatDeHebergement;
+     this.adresse = adresse;
+     this.proprietaire = proprietaire;
+     this.typeDeHebergement = typeDeHebergement;
+     this.secteurDeHebergement = secteurDeHebergement;
+     }
 
-    public Hebergement(float prix,
-                       float fraisDeNettoyage,
-                       float fraisDeService,
-                       String repertoireDePhoto,
-                       boolean etatDeHebergement,
-                       Adresse adresse,
-                       Proprietaire proprietaire,
-                       TypeDeHebergement typeDeHebergement,
-                       SecteurDeHebergement secteurDeHebergement,
-                       List<IndisponibiliteDeLogement> indisponibiliteDeLogementList) {
-        this.prix = prix;
-        this.fraisDeNettoyage = fraisDeNettoyage;
-        this.fraisDeService = fraisDeService;
-        this.repertoireDePhoto = repertoireDePhoto;
-        this.etatDeHebergement = etatDeHebergement;
-        this.adresse = adresse;
-        this.proprietaire = proprietaire;
-        this.typeDeHebergement = typeDeHebergement;
-        this.secteurDeHebergement = secteurDeHebergement;
-        this.indisponibiliteDeLogementList = indisponibiliteDeLogementList;
-    }
+     public Hebergement(float prix,
+     float fraisDeNettoyage,
+     float fraisDeService,
+     String repertoireDePhoto,
+     boolean etatDeHebergement,
+     Adresse adresse,
+     Proprietaire proprietaire,
+     TypeDeHebergement typeDeHebergement,
+     SecteurDeHebergement secteurDeHebergement,
+     List<IndisponibiliteDeLogement> indisponibiliteDeLogementList) {
+     this.prix = prix;
+     this.fraisDeNettoyage = fraisDeNettoyage;
+     this.fraisDeService = fraisDeService;
+     this.repertoireDePhoto = repertoireDePhoto;
+     this.etatDeHebergement = etatDeHebergement;
+     this.adresse = adresse;
+     this.proprietaire = proprietaire;
+     this.typeDeHebergement = typeDeHebergement;
+     this.secteurDeHebergement = secteurDeHebergement;
+     this.indisponibiliteDeLogementList = indisponibiliteDeLogementList;
+     }
 
-    public int getId() {
-        return id;
-    }
+     public int getId() {
+     return id;
+     }
 
-    public float getPrix() {
-        return prix;
-    }
+     public float getPrix() {
+     return prix;
+     }
 
-    public void setPrix(float prix) {
-        this.prix = prix;
-    }
+     public void setPrix(float prix) {
+     this.prix = prix;
+     }
 
-    public float getFraisDeNettoyage() {
-        return fraisDeNettoyage;
-    }
+     public float getFraisDeNettoyage() {
+     return fraisDeNettoyage;
+     }
 
-    public void setFraisDeNettoyage(float fraisDeNettoyage) {
-        this.fraisDeNettoyage = fraisDeNettoyage;
-    }
+     public void setFraisDeNettoyage(float fraisDeNettoyage) {
+     this.fraisDeNettoyage = fraisDeNettoyage;
+     }
 
-    public float getFraisDeService() {
-        return fraisDeService;
-    }
+     public float getFraisDeService() {
+     return fraisDeService;
+     }
 
-    public void setFraisDeService(float fraisDeService) {
-        this.fraisDeService = fraisDeService;
-    }
+     public void setFraisDeService(float fraisDeService) {
+     this.fraisDeService = fraisDeService;
+     }
 
-    public String getRepertoireDePhoto() {
-        return repertoireDePhoto;
-    }
+     public String getRepertoireDePhoto() {
+     return repertoireDePhoto;
+     }
 
-    public void setRepertoireDePhoto(String repertoireDePhoto) {
-        this.repertoireDePhoto = repertoireDePhoto;
-    }
+     public void setRepertoireDePhoto(String repertoireDePhoto) {
+     this.repertoireDePhoto = repertoireDePhoto;
+     }
 
-    public boolean isEtatDeHebergement() {
-        return etatDeHebergement;
-    }
+     public boolean isEtatDeHebergement() {
+     return etatDeHebergement;
+     }
 
-    public void setEtatDeHebergement(boolean etatDeHebergement) {
-        this.etatDeHebergement = etatDeHebergement;
-    }
+     public void setEtatDeHebergement(boolean etatDeHebergement) {
+     this.etatDeHebergement = etatDeHebergement;
+     }
 
-    public Adresse getAdresse() {
-        return adresse;
-    }
+     public Adresse getAdresse() {
+     return adresse;
+     }
 
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
-    }
+     public void setAdresse(Adresse adresse) {
+     this.adresse = adresse;
+     }
 
-    public Proprietaire getProprietaire() {
-        return proprietaire;
-    }
+     public Proprietaire getProprietaire() {
+     return proprietaire;
+     }
 
-    public void setProprietaire(Proprietaire proprietaire) {
-        this.proprietaire = proprietaire;
-    }
+     public void setProprietaire(Proprietaire proprietaire) {
+     this.proprietaire = proprietaire;
+     }
 
-    public TypeDeHebergement getTypeDeHebergement() {
-        return typeDeHebergement;
-    }
+     public TypeDeHebergement getTypeDeHebergement() {
+     return typeDeHebergement;
+     }
 
-    public void setTypeDeHebergement(TypeDeHebergement typeDeHebergement) {
-        this.typeDeHebergement = typeDeHebergement;
-    }
+     public void setTypeDeHebergement(TypeDeHebergement typeDeHebergement) {
+     this.typeDeHebergement = typeDeHebergement;
+     }
 
-    public SecteurDeHebergement getSecteurDeHebergement() {
-        return secteurDeHebergement;
-    }
+     public SecteurDeHebergement getSecteurDeHebergement() {
+     return secteurDeHebergement;
+     }
 
-    public void setSecteurDeHebergement(SecteurDeHebergement secteurDeHebergement) {
-        this.secteurDeHebergement = secteurDeHebergement;
-    }
+     public void setSecteurDeHebergement(SecteurDeHebergement secteurDeHebergement) {
+     this.secteurDeHebergement = secteurDeHebergement;
+     }
 
-    public List<IndisponibiliteDeLogement> getDisponibiliteDeLogementList() {
-        return indisponibiliteDeLogementList;
-    }
+     public List<IndisponibiliteDeLogement> getDisponibiliteDeLogementList() {
+     return indisponibiliteDeLogementList;
+     }
 
-    public void setDisponibiliteDeLogementList(List<IndisponibiliteDeLogement> indisponibiliteDeLogementList) {
-        this.indisponibiliteDeLogementList = indisponibiliteDeLogementList;
-    }
+     public void setDisponibiliteDeLogementList(List<IndisponibiliteDeLogement> indisponibiliteDeLogementList) {
+     this.indisponibiliteDeLogementList = indisponibiliteDeLogementList;
+     }
 
-    @Override
-    public String toString() {
-        return "Hebergement{" +
-                "id=" + id +
-                ", prix=" + prix +
-                ", fraisDeNettoyage=" + fraisDeNettoyage +
-                ", fraisDeService=" + fraisDeService +
-                ", repertoireDePhoto='" + repertoireDePhoto + '\'' +
-                ", etatDeHebergement=" + etatDeHebergement +
-                ", adresse=" + adresse +
-                ", proprietaire=" + proprietaire +
-                ", typeDeHebergement=" + typeDeHebergement +
-                ", secteurDeHebergement=" + secteurDeHebergement +
-                ", indisponibiliteDeLogementList=" + indisponibiliteDeLogementList +
-                '}';
-    }
-    **/
+     @Override public String toString() {
+     return "Hebergement{" +
+     "id=" + id +
+     ", prix=" + prix +
+     ", fraisDeNettoyage=" + fraisDeNettoyage +
+     ", fraisDeService=" + fraisDeService +
+     ", repertoireDePhoto='" + repertoireDePhoto + '\'' +
+     ", etatDeHebergement=" + etatDeHebergement +
+     ", adresse=" + adresse +
+     ", proprietaire=" + proprietaire +
+     ", typeDeHebergement=" + typeDeHebergement +
+     ", secteurDeHebergement=" + secteurDeHebergement +
+     ", indisponibiliteDeLogementList=" + indisponibiliteDeLogementList +
+     '}';
+     }
+     **/
 }

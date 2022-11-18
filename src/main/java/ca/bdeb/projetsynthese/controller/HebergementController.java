@@ -22,37 +22,33 @@ public class HebergementController {
     private HebergementService service;
 
     @ApiOperation(value = "Récupérer la list des hebergements")
-    @GetMapping("/listHebergement")
-
-    public List<Hebergement> findAllHebergement()  {
-
-        return service.getListHebergement();
+    @GetMapping("/list")
+    public List<Hebergement> getList()  {
+        return service.getList();
     }
 
     @ApiOperation(value = "Récupérer l'hebergement spécifié par id")
     @GetMapping("/{id}")
-    public Hebergement findHebergementById(@ApiParam("Hebergement Id") @PathVariable int id){
-        return service.getAdministrateurById(id);
+    public Hebergement getById(@ApiParam("Hebergement Id") @PathVariable int id){
+        return service.getById(id);
     }
-
-
 
     @ApiOperation(value = "Ajouter un nouvel hebergement")
     @PostMapping("/add")
-    public Hebergement addHebergement(@RequestBody Hebergement hebergement){
-        return service.addHebergement(hebergement);
+    public Hebergement add(@RequestBody Hebergement hebergement){
+        return service.add(hebergement);
     }
 
     @ApiOperation(value = "Modifer un hebergement")
     @PutMapping("/update")
-    public Hebergement updateHebergement(@RequestBody Hebergement hebergement){
-        return service.updateHebergement(hebergement);
+    public Hebergement update(@RequestBody Hebergement hebergement){
+        return service.update(hebergement);
     }
 
     @ApiOperation(value = "Supprimer un hebergement")
     @DeleteMapping("/delete/{id}")
-    public void deleteHebergement(@ApiParam("Hebergement Id") @PathVariable Integer id){
-        service.deleteHebergement(id);
+    public void delete(@ApiParam("Hebergement Id") @PathVariable Integer id){
+        service.delete(id);
     }
 
 
