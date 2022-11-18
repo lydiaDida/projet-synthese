@@ -13,14 +13,14 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "Proprietaire")
-@Validated
-@ApiModel(value = "Proprietaire Entity")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "Proprietaire")
+@Validated
+@ApiModel(value = "Proprietaire Entity")
 public class Proprietaire {
     @Id
     @Column(name = "emailProprietaire", columnDefinition = "varchar(100)")

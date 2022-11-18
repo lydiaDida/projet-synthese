@@ -3,16 +3,15 @@ package ca.bdeb.projetsynthese.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -40,8 +39,7 @@ public class IndisponibiliteDeLogement {
 
     /** relation **/
     // relation(n:1) DisponibiliteDelogement(n) <===> Herbergement(1)
-    @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idHebergement",
                 referencedColumnName = "id")
     private Hebergement hebergement;

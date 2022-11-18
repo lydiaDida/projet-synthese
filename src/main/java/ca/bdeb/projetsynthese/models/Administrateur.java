@@ -14,14 +14,14 @@ import org.springframework.validation.annotation.Validated;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "Administrateur")
-@Validated
-@ApiModel(value = "Administrateur Entity")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "Administrateur")
+@Validated
+@ApiModel(value = "Administrateur Entity")
 public class Administrateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

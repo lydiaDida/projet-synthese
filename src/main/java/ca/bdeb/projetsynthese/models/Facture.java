@@ -3,11 +3,19 @@ package ca.bdeb.projetsynthese.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Facture")
 @Validated
@@ -61,6 +69,7 @@ public class Facture {
     private Reservation reservation;
     /** fin relation **/
 
+    /**
     // constructor
     public Facture() {
     }
@@ -153,4 +162,6 @@ public class Facture {
                 ", locataire=" + locataire +
                 '}';
     }
+    **/
+
 }

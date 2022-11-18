@@ -2,11 +2,19 @@ package ca.bdeb.projetsynthese.models;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Adresse")
 @Validated
@@ -45,6 +53,7 @@ public class Adresse {
     @ApiModelProperty(value = "postal code")
     private String codePostale;
 
+    /**
     // constructor
     public Adresse() {
     }
@@ -122,4 +131,6 @@ public class Adresse {
                 ", codePostale='" + codePostale + '\'' +
                 '}';
     }
+    **/
+
 }
