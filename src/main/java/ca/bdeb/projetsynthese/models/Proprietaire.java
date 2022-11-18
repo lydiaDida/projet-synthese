@@ -1,6 +1,7 @@
 package ca.bdeb.projetsynthese.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -44,6 +45,7 @@ public class Proprietaire {
      @OneToMany(mappedBy = "proprietaire",
                 fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL)
+     @JsonIgnore
      private List<Hebergement> hebergementList = new ArrayList<>();
     /** fin relation **/
 

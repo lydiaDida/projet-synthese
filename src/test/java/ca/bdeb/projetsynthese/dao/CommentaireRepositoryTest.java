@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 class CommentaireRepositoryTest {
     @Autowired
-    private CommentaireRepository commentaireRepository;
+    private ICommentaireRepository commentaireRepository;
 
     @Test
     void testFindAll() {

@@ -1,6 +1,5 @@
 package ca.bdeb.projetsynthese.controller;
 
-import ca.bdeb.projetsynthese.models.Administrateur;
 import ca.bdeb.projetsynthese.models.Hebergement;
 
 import ca.bdeb.projetsynthese.services.HebergementService;
@@ -20,20 +19,20 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class HebergementController {
     @Autowired
-    private HebergementService hebergementService;
+    private HebergementService service;
 
     @ApiOperation(value = "Récupérer la list des hebergements")
     @GetMapping("/listHebergement")
 
     public List<Hebergement> findAllHebergement()  {
 
-        return hebergementService.getListHebergement();
+        return service.getListHebergement();
     }
 
     @ApiOperation(value = "Récupérer l'hebergement spécifié par id")
     @GetMapping("/{id}")
     public Hebergement findHebergementById(@ApiParam("Hebergement Id") @PathVariable int id){
-        return hebergementService.getAdministrateurById(id);
+        return service.getAdministrateurById(id);
     }
 
 
@@ -41,19 +40,19 @@ public class HebergementController {
     @ApiOperation(value = "Ajouter un nouvel hebergement")
     @PostMapping("/add")
     public Hebergement addHebergement(@RequestBody Hebergement hebergement){
-        return hebergementService.addHebergement(hebergement);
+        return service.addHebergement(hebergement);
     }
 
     @ApiOperation(value = "Modifer un hebergement")
     @PutMapping("/update")
     public Hebergement updateHebergement(@RequestBody Hebergement hebergement){
-        return hebergementService.updateHebergement(hebergement);
+        return service.updateHebergement(hebergement);
     }
 
     @ApiOperation(value = "Supprimer un hebergement")
     @DeleteMapping("/delete/{id}")
     public void deleteHebergement(@ApiParam("Hebergement Id") @PathVariable Integer id){
-        hebergementService.deleteHebergement(id);
+        service.deleteHebergement(id);
     }
 
 

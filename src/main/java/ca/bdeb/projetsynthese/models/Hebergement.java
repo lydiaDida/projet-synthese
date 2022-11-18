@@ -2,6 +2,9 @@ package ca.bdeb.projetsynthese.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 
@@ -9,10 +12,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Min;
 
-import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Hebergement")
 @Validated
@@ -52,18 +57,19 @@ public class Hebergement {
     private Adresse adresse;
 
     // relation(1:n) Proprietaire(1) <===> Hebergement(n)
-    @ManyToOne(cascade = CascadeType.ALL)
-
+    @ManyToOne
     @JoinColumn(name = "emailProprietaire",
             referencedColumnName = "emailProprietaire",
             columnDefinition = "varchar(50)")
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonIgnoreProperties(value = {"proprietaire"})
     private Proprietaire proprietaire;
 
     // relation(1:1) Hebergement(1) ===> TypeDeHebergement(1)
     @OneToOne
     @JoinColumn(name = "idTypeDeHebergement")
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonIgnoreProperties(value = {"typeDeHebergement"})
     private TypeDeHebergement typeDeHebergement;
 
     // relation(1:1) Hebergement(1) ===> SecteurDeHebergement(1)
@@ -72,12 +78,15 @@ public class Hebergement {
     @JsonIgnoreProperties(value = {"secteurDeHebergement"})
     private SecteurDeHebergement secteurDeHebergement;
 
-    // relation(1:n) Hebergement(1) <===> DisponibiliteDeLogement(n)
+    // relation(1:n) Hebergement(1) <===> IndisponibiliteDeLogement(n)
     @OneToMany(mappedBy = "hebergement")
     @JsonIgnore
-    private List<DisponibiliteDeLogement> disponibiliteDeLogementList = new AbstractList<DisponibiliteDeLogement>() {
+    private List<IndisponibiliteDeLogement> indisponibiliteDeLogementList = new ArrayList<>();
+    /**
+    private List<IndisponibiliteDeLogement> indisponibiliteDeLogementList = new AbstractList<IndisponibiliteDeLogement>()
+    {
         @Override
-        public DisponibiliteDeLogement get(int index) {
+        public IndisponibiliteDeLogement get(int index) {
             return null;
         }
 
@@ -86,8 +95,10 @@ public class Hebergement {
             return 0;
         }
     };
+     **/
     /** fin relation **/
 
+    /**
     // constructor
     public Hebergement() {
     }
@@ -115,7 +126,7 @@ public class Hebergement {
                        Proprietaire proprietaire,
                        TypeDeHebergement typeDeHebergement,
                        SecteurDeHebergement secteurDeHebergement,
-                       List<DisponibiliteDeLogement> disponibiliteDeLogementList) {
+                       List<IndisponibiliteDeLogement> indisponibiliteDeLogementList) {
         this.prix = prix;
         this.fraisDeNettoyage = fraisDeNettoyage;
         this.fraisDeService = fraisDeService;
@@ -125,7 +136,7 @@ public class Hebergement {
         this.proprietaire = proprietaire;
         this.typeDeHebergement = typeDeHebergement;
         this.secteurDeHebergement = secteurDeHebergement;
-        this.disponibiliteDeLogementList = disponibiliteDeLogementList;
+        this.indisponibiliteDeLogementList = indisponibiliteDeLogementList;
     }
 
     public int getId() {
@@ -204,12 +215,12 @@ public class Hebergement {
         this.secteurDeHebergement = secteurDeHebergement;
     }
 
-    public List<DisponibiliteDeLogement> getDisponibiliteDeLogementList() {
-        return disponibiliteDeLogementList;
+    public List<IndisponibiliteDeLogement> getDisponibiliteDeLogementList() {
+        return indisponibiliteDeLogementList;
     }
 
-    public void setDisponibiliteDeLogementList(List<DisponibiliteDeLogement> disponibiliteDeLogementList) {
-        this.disponibiliteDeLogementList = disponibiliteDeLogementList;
+    public void setDisponibiliteDeLogementList(List<IndisponibiliteDeLogement> indisponibiliteDeLogementList) {
+        this.indisponibiliteDeLogementList = indisponibiliteDeLogementList;
     }
 
     @Override
@@ -225,7 +236,8 @@ public class Hebergement {
                 ", proprietaire=" + proprietaire +
                 ", typeDeHebergement=" + typeDeHebergement +
                 ", secteurDeHebergement=" + secteurDeHebergement +
-                ", disponibiliteDeLogementList=" + disponibiliteDeLogementList +
+                ", indisponibiliteDeLogementList=" + indisponibiliteDeLogementList +
                 '}';
     }
+    **/
 }

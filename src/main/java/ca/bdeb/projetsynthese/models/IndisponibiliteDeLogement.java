@@ -1,5 +1,6 @@
 package ca.bdeb.projetsynthese.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -10,31 +11,32 @@ import org.springframework.validation.annotation.Validated;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "DisponibiliteDeLogement")
+@Table(name = "IndisponibiliteDeLogement")
 @Validated
 @ApiModel(value = "DisponibiliteDeLogement Entity")
-public class DisponibiliteDeLogement {
+public class IndisponibiliteDeLogement {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(value = " disponibiliteDeLogementList id")
+    @ApiModelProperty(value = " indisponibiliteDeLogementList id")
     private int id;
 
     @NotNull(message="La date de début est obligatoire")
-    @Column(name = "debutDeDateDeDisponibilite")
-    @ApiModelProperty(value = " debutDeDateDeDisponibilite")
-    private LocalDate debutDeDateDeDisponibilite;
+    @Column(name = "debutDeDateDeIndisponibilite")
+    @ApiModelProperty(value = " debutDeDateDeIndisponibilite")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate debutDeDateDeIndisponibilite;
 
     @NotNull(message="La date de départ est obligatoire")
-    @Column(name = "finDeDateDeDisponibilite")
-    @ApiModelProperty(value = " finDeDateDeDisponibilite")
-    private LocalDate finDeDateDeDisponibilite;
+    @Column(name = "finDeDateDeIndisponibilite")
+    @ApiModelProperty(value = " finDeDateDeIndisponibilite")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate finDeDateDeIndisponibilite;
 
     /** relation **/
     // relation(n:1) DisponibiliteDelogement(n) <===> Herbergement(1)

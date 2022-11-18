@@ -1,11 +1,11 @@
 package ca.bdeb.projetsynthese.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -13,7 +13,6 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -32,16 +31,18 @@ public class Reservation {
     @Future(message = "La date d'arrivé doit être après aujourd'hui")
     @Column(name = "dateDeArrive")
     @ApiModelProperty(value = "date de arrive")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDeArrive;
 
     @NotNull(message = "La date de départ est obligatoire")
     @Column(name = "dateDeDepart")
     @Future(message = "La date de départ doit être après aujourd'hui")
     @ApiModelProperty(value = "date de depart")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDeDepart;
 
     @NotNull(message="Le nombre de l'adulte est obligatoire")
-    @Min(1)
+    @Min(value = 1, message = "Le nombre de l'adulte est supérieur et egale 1")
     @Column(name = "nombreAdulte")
     @ApiModelProperty(value = "nombre de l'adulte")
     private int nombreAdulte;

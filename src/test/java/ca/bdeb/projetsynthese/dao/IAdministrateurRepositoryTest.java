@@ -5,14 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class AdministrateurRepositoryTest {
+class IAdministrateurRepositoryTest {
     @Autowired
-    private AdministrateurRepository administrateurRepository;
+    private IAdministrateurRepository administrateurRepository;
 
     @BeforeEach
     void setUp() {
