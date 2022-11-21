@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "IndisponibiliteDeLogement")
 @Validated
@@ -44,6 +45,13 @@ public class IndisponibiliteDeLogement {
                 referencedColumnName = "id")
     private Hebergement hebergement;
     /** fin relation **/
+
+    // constructor without id
+    public IndisponibiliteDeLogement(LocalDate debutDeDateDeIndisponibilite, LocalDate finDeDateDeIndisponibilite, Hebergement hebergement) {
+        this.debutDeDateDeIndisponibilite = debutDeDateDeIndisponibilite;
+        this.finDeDateDeIndisponibilite = finDeDateDeIndisponibilite;
+        this.hebergement = hebergement;
+    }
 
     /**
     // constructor

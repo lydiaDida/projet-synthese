@@ -1,5 +1,6 @@
 package ca.bdeb.projetsynthese.models;
 
+import ca.bdeb.projetsynthese.utils.FactureFactory;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "Reservation")
 @Validated

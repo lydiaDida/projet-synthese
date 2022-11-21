@@ -2,11 +2,11 @@ package ca.bdeb.projetsynthese.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -28,7 +28,7 @@ public class Facture {
     @Column(name = "sommeDeSejout", columnDefinition = "float(10) DEFAULT 0.00")
     // evider changement de float pour le front-end
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private float sommeDeSejout;
+    private float sommeDeSejour;
 
     @Min(value = 0, message = "Le frais de nettoyage supérieur 0")
     @Column(name = "fraisDeNettoyage", columnDefinition="float(10) DEFAULT 0.00")
@@ -65,6 +65,7 @@ public class Facture {
     // relation(1:1) Reservation(1) <===> Facture(1)
     @OneToOne(mappedBy = "facture")
 //    @JsonIgnoreProperties(value ={"facture"})
+    @Lazy
     @JsonIgnore
     private Reservation reservation;
     /** fin relation **/

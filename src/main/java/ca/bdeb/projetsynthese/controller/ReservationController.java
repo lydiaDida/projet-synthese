@@ -18,32 +18,32 @@ public class ReservationController {
 
     @GetMapping("/list")
     @ApiOperation("Récupérer la liste de reservations")
-    public List<Reservation> getReservationList() {
-        return service.getReservationList();
+    public List<Reservation> getList() {
+        return service.getList();
     }
 
     @GetMapping("/{numero}")
     @ApiOperation("Récupérer une reservation par numero")
-    public Reservation getReservationByNumero(@PathVariable("numero") Integer numero) {
-        return service.getReservationByNumero(numero);
+    public Reservation getByNumero(@PathVariable("numero") Integer numero) {
+        return service.getByNumero(numero);
     }
 
     @PostMapping("/add")
     @ApiOperation("Ajouter une reservation")
-    public Reservation addReservation(@RequestBody Reservation reservation) {
-        return service.addReservation(reservation);
+    public Reservation add(@RequestBody Reservation reservation) {
+        return service.add(reservation);
     }
 
     @PutMapping("/update")
     @ApiOperation("Modifier une reservation")
-    public Reservation updateReservation(@RequestBody Reservation reservation) {
-        return service.updateReservation(reservation);
+    public Reservation update(@RequestBody Reservation reservation) {
+        return service.update(reservation);
     }
 
     @DeleteMapping("/delete/{numero}")
     @ApiOperation("Supprimer une reservation par numero")
-    public void deleteReservation(@PathVariable Integer numero) {
-        service.deleteReservation(numero);
+    public void delete(@PathVariable Integer numero) {
+        service.delete(numero);
     }
 
 }

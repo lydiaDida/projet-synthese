@@ -31,6 +31,10 @@ public class TypeDeHebergement {
     @ApiModelProperty(value = "Type De Hebergement")
     private String typeDeHebergement;
 
+    // constructor without id
+    public TypeDeHebergement(String typeDeHebergement) {
+        this.typeDeHebergement = typeDeHebergement;
+    }
     /**
     // constructor
     public TypeDeHebergement() {

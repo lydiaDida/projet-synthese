@@ -31,6 +31,11 @@ public class SecteurDeHebergement {
     @ApiModelProperty("Sector name")
     private String secteurDeHebergement;
 
+    // constructor without id
+    public SecteurDeHebergement(String secteurDeHebergement) {
+        this.secteurDeHebergement = secteurDeHebergement;
+    }
+
     /**
     // constructor
     public SecteurDeHebergement() {

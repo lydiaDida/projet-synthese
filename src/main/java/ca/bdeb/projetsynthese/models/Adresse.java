@@ -53,6 +53,17 @@ public class Adresse {
     @ApiModelProperty(value = "postal code")
     private String codePostale;
 
+    // constructor without id
+    public Adresse(String numeroDeRue, String rue, String ville, String province, String pays, String codePostale) {
+        this.numeroDeRue = numeroDeRue;
+        this.rue = rue;
+        this.ville = ville;
+        this.province = province;
+        this.pays = pays;
+        this.codePostale = codePostale;
+    }
+
+
     /**
     // constructor
     public Adresse() {

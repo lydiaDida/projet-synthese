@@ -1,5 +1,6 @@
 package ca.bdeb.projetsynthese.controller;
 
+import ca.bdeb.projetsynthese.dto.CritereHebergement;
 import ca.bdeb.projetsynthese.models.Hebergement;
 
 import ca.bdeb.projetsynthese.services.HebergementService;
@@ -51,6 +52,11 @@ public class HebergementController {
         service.delete(id);
     }
 
+    @ApiOperation(value = "Récupérer la liste de l'hébergement par requête critère")
+    @GetMapping("/critere")
+    public List<Hebergement> list(@RequestBody CritereHebergement critereHebergement){
+        return service.getListByCriteria(critereHebergement);
+    }
 
 
 }

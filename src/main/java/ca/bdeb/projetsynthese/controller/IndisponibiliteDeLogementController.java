@@ -1,5 +1,6 @@
 package ca.bdeb.projetsynthese.controller;
 
+import ca.bdeb.projetsynthese.dto.IndisponibiliteDeLogementDTO;
 import ca.bdeb.projetsynthese.models.IndisponibiliteDeLogement;
 import ca.bdeb.projetsynthese.services.IndisponibiliteDeLogementService;
 import io.swagger.annotations.Api;
@@ -18,34 +19,37 @@ public class IndisponibiliteDeLogementController {
 
     @GetMapping("/list")
     @ApiOperation(value ="Récupérer une indisponibilite de logement par id")
-    public List<IndisponibiliteDeLogement> getIndisponibiliteDeLogementList() {
-       return service.getIndisponibiliteDeLogementList();
+    public List<IndisponibiliteDeLogement> getList() {
+       return service.getList();
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value ="Récupérer une indisponibilite de logement")
-    public IndisponibiliteDeLogement getIndisponibiliteDeLogementById(@PathVariable("id") Integer id) {
-        return service.getIndisponibiliteDeLogementById(id);
+    public IndisponibiliteDeLogement getById(@PathVariable("id") Integer id) {
+        return service.getById(id);
     }
 
     @PostMapping("/add")
     @ApiOperation(value ="Ajouter une indisponibilite de logement")
-    public IndisponibiliteDeLogement addIndisponibiliteDeLogement(
-            @RequestBody IndisponibiliteDeLogement indisponibiliteDeLogement){
-        return service.addIndisponibiliteDeLogement(indisponibiliteDeLogement);
+    public IndisponibiliteDeLogement add(@RequestBody IndisponibiliteDeLogement indisponibilite){
+        return service.add(indisponibilite);
     }
 
     @PutMapping("/update")
     @ApiOperation(value ="Modifie une indisponibilite de logement")
-    public IndisponibiliteDeLogement updateIndisponibiliteDeLogement(
-            @RequestBody IndisponibiliteDeLogement indisponibiliteDeLogement) {
-        return service.updateIndisponibiliteDeLogement(indisponibiliteDeLogement);
+    public IndisponibiliteDeLogement update(@RequestBody IndisponibiliteDeLogement indisponibilite) {
+        return service.update(indisponibilite);
     }
 
     @DeleteMapping("/delete/{id}")
     @ApiOperation(value ="Supprimer une indisponibilite de logement by id")
-    public void deleteIndisponibiliteDeLogement(@PathVariable("id") Integer id){
-        service.deleteIndisponibiliteDeLogement(id);
+    public void deleteById(@PathVariable("id") Integer id){
+        service.deleteById(id);
     }
 
+    @GetMapping("/logement/{logementid}")
+    @ApiOperation(value ="Récupérer liste d'indisponibilite d'un logement")
+    public List<IndisponibiliteDeLogementDTO> getIndisponibiliteUnLogement(@PathVariable("logementid") Integer logementid){
+        return service.getIndisponibiliteUnLogement(logementid);
+    }
 }

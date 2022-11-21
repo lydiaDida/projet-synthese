@@ -76,6 +76,7 @@ public class Hebergement {
     // relation(1:n) Hebergement(1) <===> IndisponibiliteDeLogement(n)
     @OneToMany(mappedBy = "hebergement")
     @JsonIgnore
+//    @JsonIgnoreProperties(value ={"hebergement"})
     private List<IndisponibiliteDeLogement> indisponibiliteDeLogementList = new ArrayList<>();
 
     /**
@@ -92,6 +93,20 @@ public class Hebergement {
      **/
 
     /** fin relation **/
+
+    // constructor without id
+    public Hebergement(float prix, float fraisDeNettoyage, float fraisDeService, String repertoireDePhoto, boolean etatDeHebergement, Adresse adresse, Proprietaire proprietaire, TypeDeHebergement typeDeHebergement, SecteurDeHebergement secteurDeHebergement, List<IndisponibiliteDeLogement> indisponibiliteDeLogementList) {
+        this.prix = prix;
+        this.fraisDeNettoyage = fraisDeNettoyage;
+        this.fraisDeService = fraisDeService;
+        this.repertoireDePhoto = repertoireDePhoto;
+        this.etatDeHebergement = etatDeHebergement;
+        this.adresse = adresse;
+        this.proprietaire = proprietaire;
+        this.typeDeHebergement = typeDeHebergement;
+        this.secteurDeHebergement = secteurDeHebergement;
+        this.indisponibiliteDeLogementList = indisponibiliteDeLogementList;
+    }
 
     /**
      // constructor
