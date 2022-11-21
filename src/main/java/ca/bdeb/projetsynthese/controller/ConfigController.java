@@ -23,16 +23,15 @@ public class ConfigController {
     }
 
     @ApiOperation(value = "add or modify user's config")
-    @PostMapping("/update")
-    public Config update(@RequestBody Config config){
-       return service.update(config);
+    @PutMapping("/update")
+    public Config update(@RequestBody Config config) {
+        return service.update(config);
     }
 
     @ApiOperation(value = "delete un user's config")
-    @DeleteMapping("/reset/{useremail}")
-    public Config reset(@ApiParam("user's email")
-                       @PathVariable("useremail") String email){
-       return service.reset(email);
+    @PutMapping("/reset")
+    public Config reset(@RequestBody Config config) {
+        return service.reset(config);
     }
 
 }
