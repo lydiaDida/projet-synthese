@@ -15,7 +15,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CritereHebergement {
     private int id;
-    private float prix;
+    private float prixMin;
+    private float prixMax;
     private float fraisDeNettoyage;
     private float fraisDeService;
     private float etatDeHebergement;

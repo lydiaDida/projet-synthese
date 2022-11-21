@@ -3,6 +3,7 @@ package ca.bdeb.projetsynthese.controller;
 import ca.bdeb.projetsynthese.dto.CritereHebergement;
 import ca.bdeb.projetsynthese.models.Hebergement;
 
+import ca.bdeb.projetsynthese.models.TypeDeHebergement;
 import ca.bdeb.projetsynthese.services.HebergementService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -53,10 +55,12 @@ public class HebergementController {
     }
 
     @ApiOperation(value = "Récupérer la liste de l'hébergement par requête critère")
-    @GetMapping("/critere")
+    @PostMapping("/critere")
     public List<Hebergement> list(@RequestBody CritereHebergement critereHebergement){
         return service.getListByCriteria(critereHebergement);
     }
+
+
 
 
 }
