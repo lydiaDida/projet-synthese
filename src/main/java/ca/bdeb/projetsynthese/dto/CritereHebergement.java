@@ -15,13 +15,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CritereHebergement {
     private int id;
-    private float prixMin;
-    private float prixMax;
-    private float fraisDeNettoyage;
-    private float fraisDeService;
-    private float etatDeHebergement;
-    private int typeDeHebergementId;
-    private int secteurDeHebergementId;
+//    private float prixMin;
+//    private float prixMax;
+//    private float fraisDeNettoyage;
+//    private float fraisDeService;
+    private String prixMin;
+    private String prixMax;
+    private String fraisDeNettoyage;
+    private String fraisDeService;
+    private boolean etatDeHebergement = true;
+//    private int typeDeHebergementId;
+//    private int secteurDeHebergementId;
+    private String typeDeHebergementId;
+    private String secteurDeHebergementId;
     private LocalDate dateDeArrive;
     private LocalDate dateDeDepart;
 }

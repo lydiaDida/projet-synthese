@@ -1,6 +1,7 @@
 package ca.bdeb.projetsynthese.controller;
 
 import ca.bdeb.projetsynthese.dto.CritereHebergement;
+import ca.bdeb.projetsynthese.dto.IndisponibiliteDeLogementDTO;
 import ca.bdeb.projetsynthese.models.Hebergement;
 
 import ca.bdeb.projetsynthese.models.TypeDeHebergement;
@@ -14,12 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 
 @Api(tags = "API pour hebergement")
 @RestController
 @RequestMapping("/api/v1/hebergement")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class HebergementController {
     @Autowired
     private HebergementService service;
@@ -54,9 +56,16 @@ public class HebergementController {
         service.delete(id);
     }
 
-    @ApiOperation(value = "Récupérer la liste de l'hébergement par requête critère")
+    /**
+     * method is for get available herbergement avec his indisponibilite list
+     * @param critereHebergement critere hebergement of the request
+     * @return map available with his indisponibilite list
+     *         if indisponibilite list is null, it means hebergement is available all time
+     */
+    @ApiOperation(value = "Récupérer la liste de l'hébergement par requête critère. " +
+            "retourner un map de hebergemment disponible avec leur liste indisponibilite")
     @PostMapping("/critere")
-    public List<Hebergement> list(@RequestBody CritereHebergement critereHebergement){
+    public Map<Integer, List<IndisponibiliteDeLogementDTO>> list(@RequestBody CritereHebergement critereHebergement){
         return service.getListByCriteria(critereHebergement);
     }
 
