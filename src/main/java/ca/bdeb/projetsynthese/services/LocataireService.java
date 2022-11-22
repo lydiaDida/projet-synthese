@@ -2,8 +2,11 @@ package ca.bdeb.projetsynthese.services;
 
 import ca.bdeb.projetsynthese.dao.IAdresseRepository;
 import ca.bdeb.projetsynthese.dao.ILocataireRepository;
+import ca.bdeb.projetsynthese.dto.LoginDTO;
 import ca.bdeb.projetsynthese.models.Adresse;
 import ca.bdeb.projetsynthese.models.Locataire;
+import ca.bdeb.projetsynthese.vo.AdministrateurLoginVO;
+import ca.bdeb.projetsynthese.vo.LocataireLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +58,9 @@ public class LocataireService {
         if (locataire != null) {
             repository.delete(locataire);
         }
+    }
+
+    public LocataireLoginVO login(LoginDTO loginDTO) {
+        return null;
     }
 }
