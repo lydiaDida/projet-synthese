@@ -61,6 +61,15 @@ public class LocataireService {
     }
 
     public LocataireLoginVO login(LoginDTO loginDTO) {
-        return null;
+        Locataire locataire = repository.findByEmailLocataire(loginDTO.getEmail());
+        if (locataire != null) {
+            if (locataire.getMotDePasse().equals(loginDTO.getPassword())) {
+                return new LocataireLoginVO("Bienvenu " + locataire.getPrenom(), locataire);
+            }else{
+                return new LocataireLoginVO("Mot de passe n'est pas correct!", null);
+            }
+        }else {
+            return new LocataireLoginVO("Utilisateur n'exist pas, S'inscrire S.V.P", null);
+        }
     }
 }
