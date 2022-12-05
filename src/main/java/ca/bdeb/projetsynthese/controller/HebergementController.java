@@ -19,7 +19,7 @@ import java.util.Map;
 @Api(tags = "API pour hebergement")
 @RestController
 @RequestMapping("/api/v1/hebergement")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "*")
 public class HebergementController {
     @Autowired
     private HebergementService service;
