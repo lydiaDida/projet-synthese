@@ -31,8 +31,8 @@ public class LocataireService {
 
     // add a locataire
     public Locataire addLocataire(Locataire locataire) {
-        // chercher adresse dans la DB
-        Adresse adresse = IAdresseRepository.findById(locataire.getAdresse().getId()).get();
+        // ajouter l'adresse dans la DB
+        Adresse adresse = IAdresseRepository.save(locataire.getAdresse());
         locataire.setAdresse(adresse);
         return repository.save(locataire);
     }
