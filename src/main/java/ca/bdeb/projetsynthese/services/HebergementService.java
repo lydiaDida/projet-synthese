@@ -1,7 +1,7 @@
 package ca.bdeb.projetsynthese.services;
 
 import ca.bdeb.projetsynthese.dao.*;
-import ca.bdeb.projetsynthese.dto.CritereHebergement;
+import ca.bdeb.projetsynthese.dto.CritereHebergementDTO;
 import ca.bdeb.projetsynthese.dto.IndisponibiliteDeLogementDTO;
 import ca.bdeb.projetsynthese.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,11 +90,12 @@ public class HebergementService {
 
     /**
      * method is for get available herbergement avec his indisponibilite list
-     * @param critereHebergement critere hebergement of the request
+     *
+     * @param critereHebergementDTO critere hebergement of the request
      * @return map available with his indisponibilite list
-     *         if indisponibilite list is null, it means hebergement is available all time
+     * if indisponibilite list is null, it means hebergement is available all time
      */
-    public Map<Integer, List<IndisponibiliteDeLogementDTO>> getListByCriteria(CritereHebergement critereHebergement) {
+    public Map<Integer, List<IndisponibiliteDeLogementDTO>> getListByCriteria(CritereHebergementDTO critereHebergementDTO) {
         // data preparation, read the data related into memory to reduce response time
         //// get all indisponibilite
         List<IndisponibiliteDeLogementDTO> listIndispoDTO = indisponibiliteRepository.findAllDTO();
@@ -115,11 +116,9 @@ public class HebergementService {
                 .filter(Hebergement::isEtatDeHebergement)
                 .collect(Collectors.toList());
 
+
         // critere: prixMax,
-        float prixMax = 0.0f;
-        if (!critereHebergement.getPrixMax().equals("")){
-            prixMax = Float.valueOf(critereHebergement.getPrixMax());
-        }
+        float prixMax = critereHebergementDTO.getPrixMax();
         if (prixMax > 0) {
             float max = prixMax;
             hebergementList = hebergementList.stream()
@@ -128,10 +127,7 @@ public class HebergementService {
         }
 
         // critere: prixMin,
-        float prixMin = 0.0f;
-        if (!critereHebergement.getPrixMin().equals("")){
-            prixMin = Float.valueOf(critereHebergement.getPrixMin());
-        }
+        float prixMin = Float.valueOf(critereHebergementDTO.getPrixMin());
         if (prixMin > 0) {
             float min = prixMin;
             hebergementList = hebergementList.stream()
@@ -140,10 +136,7 @@ public class HebergementService {
         }
 
         // critere: typeDeHebergement
-        int typeDeHebergementId = 0;
-        if(!critereHebergement.getTypeDeHebergementId().equals("")){
-            typeDeHebergementId = Integer.valueOf(critereHebergement.getTypeDeHebergementId());
-        }
+        int typeDeHebergementId = Integer.valueOf(critereHebergementDTO.getTypeDeHebergementId());
         if (typeDeHebergementId > 0) {
             int typeId = typeDeHebergementId;
             hebergementList = hebergementList.stream()
@@ -152,10 +145,7 @@ public class HebergementService {
         }
 
         // critere: secteurDeHebergement
-        int secteurDeHebergementId = 0;
-        if(!critereHebergement.getSecteurDeHebergementId().equals("")){
-            secteurDeHebergementId = Integer.valueOf(critereHebergement.getSecteurDeHebergementId());
-        }
+        int secteurDeHebergementId = Integer.valueOf(critereHebergementDTO.getSecteurDeHebergementId());
         if (secteurDeHebergementId > 0) {
             int secteurId = secteurDeHebergementId;
             hebergementList = hebergementList.stream()
@@ -166,7 +156,7 @@ public class HebergementService {
 
         // implement critere indisponibilite de hebergement
         // critere: dateDeArrive
-        LocalDate dateDeArrive = critereHebergement.getDateDeArrive();
+        LocalDate dateDeArrive = critereHebergementDTO.getDateDeArrive();
         Map<Integer, List<IndisponibiliteDeLogementDTO>> mapAvailable = new HashMap<Integer, List<IndisponibiliteDeLogementDTO>>();
         if (dateDeArrive != null) {
             for (Hebergement hebergement : hebergementList) {
@@ -217,7 +207,7 @@ public class HebergementService {
 
         // critere: dateDeDepart,
         // remove conflicted element from mapAvailable if there is a conflict with dateDeDepart
-        LocalDate dateDeDepart = critereHebergement.getDateDeDepart();
+        LocalDate dateDeDepart = critereHebergementDTO.getDateDeDepart();
         if (dateDeDepart != null) {
             // iterate hebergement list
             for (Hebergement hebergement : hebergementList) {
@@ -227,7 +217,7 @@ public class HebergementService {
                 // get list disponibiliteDeLogement of this hebergement
                 List<IndisponibiliteDeLogementDTO> list = mapOriginIndisponibilite.get(hebergement.getId());
                 // if list is not null, it needs verify, because there is possible to have conflict
-                if(list != null){
+                if (list != null) {
                     for (IndisponibiliteDeLogementDTO dto : list) {
                         if (dateDeDepart.isEqual(dto.getDebutDeDateDeIndisponibilite())
                                 || dateDeDepart.isEqual(dto.getFinDeDateDeIndisponibilite())
