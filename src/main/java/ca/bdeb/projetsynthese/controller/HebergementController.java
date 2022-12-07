@@ -56,15 +56,19 @@ public class HebergementController {
 
     /**
      * method is for get available herbergement avec his indisponibilite list
-     * @param critereHebergementDTO critere hebergement of the request
      * @return map available with his indisponibilite list
      *         if indisponibilite list is null, it means hebergement is available all time
      */
     @ApiOperation(value = "Récupérer la liste de l'hébergement par requête critère. " +
             "retourner un map de hebergemment disponible avec leur liste indisponibilite")
-//    @PostMapping("/critere")
     @GetMapping("/critere")
-    public Map<Integer, List<IndisponibiliteDeLogementDTO>> list(@RequestBody CritereHebergementDTO critereHebergementDTO){
+    public Map<Integer, List<IndisponibiliteDeLogementDTO>> list(@RequestParam int prixMin,
+                                                                 @RequestParam int prixMax,
+                                                                 @RequestParam int typeDeHebergement,
+                                                                 @RequestParam int secteurDeHebergement,
+                                                                 @RequestParam String dateDeArrive,
+                                                                 @RequestParam String dateDeDepart){
+        CritereHebergementDTO critereHebergementDTO = new CritereHebergementDTO();
         System.out.println("CritereHebergementDTO in controllor: => " + critereHebergementDTO);
         System.out.println("================================================");
         if (critereHebergementDTO == null) {
