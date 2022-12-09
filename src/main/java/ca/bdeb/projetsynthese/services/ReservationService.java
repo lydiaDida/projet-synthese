@@ -2,6 +2,7 @@ package ca.bdeb.projetsynthese.services;
 
 import ca.bdeb.projetsynthese.dao.*;
 import ca.bdeb.projetsynthese.dto.IndisponibiliteDeLogementDTO;
+import ca.bdeb.projetsynthese.dto.ReservationDTO;
 import ca.bdeb.projetsynthese.models.*;
 import ca.bdeb.projetsynthese.utils.CarteCreditFactory;
 import ca.bdeb.projetsynthese.utils.FactureFactory;
@@ -39,15 +40,19 @@ public class ReservationService {
     }
 
     // add reservation
-    public Reservation add(Reservation reservation) {
+    public boolean add(ReservationDTO reservationDTO) {
+        Reservation reservation = new Reservation(reservationDTO);
+        // default reservation etat
+        reservation.setEtatReservation(true);
+
         // get locataire for this reservation
         Locataire locataire =
-                locataireRepository.findByEmailLocataire(reservation.getLocataire().getEmailLocataire());
+                locataireRepository.findByEmailLocataire(reservationDTO.getEmailLocataire());
         reservation.setLocataire(locataire);
 
         // get hebergement for this reservation
         Hebergement hebergement =
-                hebergementRepository.findById(reservation.getHebergement().getId()).get();
+                hebergementRepository.findById(reservationDTO.getHebergementId()).get();
         reservation.setHebergement(hebergement);
 
         // generer facture
@@ -56,21 +61,27 @@ public class ReservationService {
         facture = factureRepository.save(facture);
         reservation.setFacture(facture);
 
-        // get credit car for this reservation
+        // get credit car for this reservation,
+        // par default inconnu, parce que on a besoin quand on fait le payement
         CarteCredit carteCredit =
-                carteCreditRepository.findByNumero(reservation.getCarteCredit().getNumero());
+                carteCreditRepository.findByNumero("inconnu");
         // generate new credit car for this reservation if it doesn't exist
-        if (carteCredit == null) {
-            carteCredit = CarteCreditFactory.getInstance(reservation);
-            carteCredit = carteCreditRepository.save(carteCredit);
-        }
+//        if (carteCredit == null) {
+//            carteCredit = CarteCreditFactory.getInstance(reservation);
+//            carteCredit = carteCreditRepository.save(carteCredit);
+//        }
         reservation.setCarteCredit(carteCredit);
 
         // add a disponibiliteDeLogement into the table of the DB
+        System.out.println("hebergement ====>" + reservation.getHebergement().getId());
         indisponibiliteService.add(IndisponibiliteDeLogementFactory.getInstance(reservation));
 
         // add reservation
-        return repository.save(reservation);
+        boolean isInsert= false;
+        if(repository.save(reservation).getNumeroDeReservation() > 0) {
+           isInsert = true;
+        }
+        return isInsert;
     }
 
     // update reservation

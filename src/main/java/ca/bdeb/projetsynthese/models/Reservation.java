@@ -1,5 +1,6 @@
 package ca.bdeb.projetsynthese.models;
 
+import ca.bdeb.projetsynthese.dto.ReservationDTO;
 import ca.bdeb.projetsynthese.utils.FactureFactory;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -94,6 +95,28 @@ public class Reservation {
                 columnDefinition="varchar(25)")
     private CarteCredit carteCredit;
     /** fin relation **/
+
+    public Reservation(ReservationDTO reservationDTO){
+        this.dateDeArrive = reservationDTO.getDateDeArrive();
+        this.dateDeDepart = reservationDTO.getDateDeDepart();
+        this.nombreAdulte = reservationDTO.getNombreAdulte();
+        this.nombreEnfant = reservationDTO.getNombreEnfant();
+        this.nombreBebe = reservationDTO.getNombreBebe();
+        this.nombreAnimauxAssistance = reservationDTO.getNombreAnimauxAssistance();
+    }
+
+    public ReservationDTO asDTO() {
+        return new ReservationDTO(
+                this.dateDeArrive,
+                this.dateDeDepart,
+                this.nombreAdulte,
+                this.nombreEnfant,
+                this.nombreBebe,
+                this.nombreAnimauxAssistance,
+                this.locataire.getEmailLocataire(),
+                this.hebergement.getId()
+        );
+    }
 
     /**
     // constructor

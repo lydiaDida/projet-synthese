@@ -11,6 +11,7 @@ public class IndisponibiliteDeLogementFactory {
         instance.setDebutDeDateDeIndisponibilite(reservation.getDateDeArrive());
         instance.setFinDeDateDeIndisponibilite(reservation.getDateDeDepart());
         instance.setHebergement(reservation.getHebergement());
+        System.out.println("indeisponsabilite ===> " + instance.getHebergement().getId());
 
         return instance;
     }

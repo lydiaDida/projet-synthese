@@ -1,5 +1,6 @@
 package ca.bdeb.projetsynthese.controller;
 
+import ca.bdeb.projetsynthese.dto.ReservationDTO;
 import ca.bdeb.projetsynthese.models.Reservation;
 import ca.bdeb.projetsynthese.services.ReservationService;
 import io.swagger.annotations.Api;
@@ -39,8 +40,9 @@ public class ReservationController {
 
     @PostMapping("/add")
     @ApiOperation("Ajouter une reservation")
-    public Reservation add(@RequestBody Reservation reservation) {
-        return service.add(reservation);
+    public boolean add(@RequestBody ReservationDTO reservationDTO) {
+        System.out.println(reservationDTO.toString());
+        return service.add(reservationDTO);
     }
 
     @PutMapping("/update")
